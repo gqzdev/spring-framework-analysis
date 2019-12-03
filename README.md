@@ -1,10 +1,19 @@
-[![github](https://badgen.net/badge/github/github?icon)](https://github.com/gqzdev)
-[![star](https://gitee.com/zhong96/spring-framework-5.1.x/badge/star.svg?theme=dark)](https://gitee.com/zhong96/spring-framework-5.1.x)
-![fork](https://gitee.com/zhong96/spring-framework-5.1.x/badge/fork.svg?theme=dark)
+[![github](https://badgen.net/badge/github/github?icon)](https://github.com/gqzdev)[![csdn](https://badgen.net/badge/blog/ganquanzhong/red)](https://blog.csdn.net/ganquanzhong)[![gitee](https://badgen.net/badge/gitee/zhong96/orange)](https://gitee.com/zhong96)
 
-[![csdn](https://badgen.net/badge/blog/ganquanzhong/red)](https://blog.csdn.net/ganquanzhong)
 
-[![gitee](https://badgen.net/badge/gitee/zhong96/orange)](https://gitee.com/zhong96)
+
+1. 下载源码
+
+```shell
+git clone https://gitee.com/zhong96/spring-framework-5.1.x.git
+```
+
+2. 构建build时会报错，主要是仓库上面缺少两个target，将其添加到target就行，提交时没有上传
+
+   ```
+   /src/main/java/org/springframework/aop/target
+   /src/main/java/org/springframework/aop/framework/autoproxy/target
+   ```
 
 
 

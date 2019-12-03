@@ -22,7 +22,9 @@ classes/
 buildSrc/build
 /spring-*/build
 /src/asciidoc/build
-target/
+target/*
+!/src/main/java/org/springframework/aop/target
+!/src/main/java/org/springframework/aop/framework/autoproxy/target
 
 # Eclipse artifacts, including WTP generated manifests
 .classpath
