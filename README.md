@@ -45,7 +45,7 @@ git clone https://gitee.com/zhong96/spring-framework-5.1.x.git
 
 ## 文档
 
-​		Spring框架维护参考文档（[已发布](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/)和[source](src / docs / asciidoc)），Github [wiki页面](https://github.com/spring-projects/spring-framework/wiki)，以及
+​		Spring框架维护参考文档（[已发布](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/)和[source](src/docs/asciidoc)），Github [wiki页面](https://github.com/spring-projects/spring-framework/wiki)，以及
 [API参考](https://docs.spring.io/spring-framework/docs/current/javadoc-api/)。 Spring项目中也有[guides and tutorials](https://spring.io/guides)
 
 ## 从源代码构建
