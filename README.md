@@ -29,6 +29,41 @@ git clone https://gitee.com/zhong96/spring-framework-5.1.x.git
 
 <img src="src/docs/asciidoc/images/spring-framework.png" width="80" height="80"> Spring Framework
 
+## 		中文：
+
+​		这是Spring框架的所在地：所有[Spring项目](https://spring.io/projects)的基础。 总体来说，Spring框架和Spring项目系列通常简称为“ Spring”。
+
+​		Spring提供了Java编程语言以外的所有需要，可用于为各种场景和体系结构来创建企业应用程序。 请阅读[概述](https://docs.spring.io/spring/docs/current/spring-framework-reference/overview.html#spring-introduction)部分作为参考，以获取更完整的介绍。
+
+## 编码准则
+
+​		此项目受[Spring行为准则](CODE_OF_CONDUCT.adoc)的约束。 通过参与，您将遵守此行为准则。 请向spring-code-of-conduct@pivotal.io报告不可接受的行为。
+
+## 访问二进制文件
+
+​		有关对工件或分发zip的访问，请参见[Spring Framework Artifacts](https://github.com/spring-projects/spring-framework/wiki/Spring-Framework-Artifacts)Wiki页面。
+
+## 文档
+
+​		Spring框架维护参考文档（[已发布](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/)和[source](src / docs / asciidoc)），Github [wiki页面](https://github.com/spring-projects/spring-framework/wiki)，以及
+[API参考](https://docs.spring.io/spring-framework/docs/current/javadoc-api/)。 Spring项目中也有[guides and tutorials](https://spring.io/guides)
+
+## 从源代码构建
+
+​		请参阅[从源构建](https://github.com/spring-projects/spring-framework/wiki/Build-from-Source)Wikipedia页面和[CONTRIBUTING.md](CONTRIBUTING.md)文件。
+
+## 保持联系
+
+​		关注[@SpringCentral](https://twitter.com/springcentral)，[@SpringFramework](https://twitter.com/springframework)及其[团队成员](https://twitter.com/springframework/lists/team/members)。可以在[The Spring Blog](https://spring.io/blog/)上找到深入的文章，并通过我们的[news feed](https://spring.io/blog/category/news)宣布发布。 ）。
+
+## 执照
+
+​		Spring Framework是在[Apache许可](https://www.apache.org/licenses/LICENSE-2.0)的2.0版下发布的。
+
+
+
+## 		英文：
+
 This is the home of the Spring Framework: the foundation for all [Spring projects](https://spring.io/projects). Collectively the Spring Framework and the family of Spring projects is often referred to simply as "Spring". 
 
 Spring provides everything required beyond the Java programming language for creating enterprise applications for a wide range of scenarios and architectures. Please read the [Overview](https://docs.spring.io/spring/docs/current/spring-framework-reference/overview.html#spring-introduction) section as reference for a more complete introduction.

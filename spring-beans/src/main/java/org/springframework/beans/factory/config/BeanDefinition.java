@@ -36,7 +36,10 @@ import org.springframework.lang.Nullable;
  * @see ConfigurableListableBeanFactory#getBeanDefinition
  * @see org.springframework.beans.factory.support.RootBeanDefinition
  * @see org.springframework.beans.factory.support.ChildBeanDefinition
+ *
  */
+
+//Bean的定义信息 包括Name Scope LazyInit Autowire等信息
 public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 
 	/**

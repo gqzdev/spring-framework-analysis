@@ -17,6 +17,7 @@ public class BeanTest {
 
 		ApplicationContext ac =new AnnotationConfigApplicationContext(JavaConfig.class);
 		User user = (User) ac.getBean("user");
+		System.out.println("appName"+ac.getAutowireCapableBeanFactory());
 		System.out.println(user.toString());
 	}
 }

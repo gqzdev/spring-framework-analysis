@@ -347,6 +347,7 @@ public interface BeanFactory {
 	 * @return the aliases, or an empty array if none
 	 * @see #getBean
 	 */
+	//得到别名
 	String[] getAliases(String name);
 
 }
