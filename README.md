@@ -10,12 +10,22 @@ git clone https://gitee.com/zhong96/spring-framework-5.1.x.git
 
 2. 构建build时会报错，主要是仓库上面缺少两个target，将其添加到target就行，提交时没有上传
 
-   ```
-   /src/main/java/org/springframework/aop/target
-   /src/main/java/org/springframework/aop/framework/autoproxy/target
-   ```
+>&emsp;&emsp;这个总结下构建源码阅读环境过程中会遇到的问题和解决办法。
 
+1. 在idea中导入spring5源码构建时，spring-core模块报错，缺失cglib相关的jar包依赖。
+> 为了避免第三方class的冲突，Spring把最新的cglib和obj巳nesis给重新打包（repack）了，它并没有在源码里提供这部分的代码，而是直接将其放在jar包当中，这也就导致了我们拉取代码后出现编译错误。那么为了画过编译，我们要把缺失的jar补回来![在这里插入图片描述](https://img-blog.csdnimg.cn/20190910100845635.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
 
+> 2. Aspecu编译问题解决，主要是aspect关键字Java语法违背，需要使用ajc编译器执行。下面就切换ajc编译器，首先需要下载aspectj，并且安装。   
+- 为spring-aspect工程添加Facets属性
+![为spring-aspect工程添加Facets属性](https://img-blog.csdnimg.cn/20191204100207422.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
+- 编译器要改为Ajc，同时要设置Ajc的安装目录，如图1-27所示。记住，要选择到a spec飞jtools.jar这个层面，同时，务必要边择Delegateto Javac选顷，它的作用是只编译AspectJ的Facets项目，而其他则使用JDK代理。如果不勾选，则全部使用Ajc编译，那么会导致编译错误。
+![编译器要改为Ajc](https://img-blog.csdnimg.cn/20191204100438207.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
+
+3. 在idea中导入spring5源码构建时，spring-oxm模块报错，在gradle中找到spring-oxm的==genCastor、genJaxb== 命令。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190910103004223.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
+
+4. build finish
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20191203180338769.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
 
 <img src="src/docs/asciidoc/images/spring-framework.png" width="80" height="80"> Spring Framework
 
