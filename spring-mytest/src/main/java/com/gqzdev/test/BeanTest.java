@@ -19,6 +19,8 @@ public class BeanTest {
 		//AnnotationConfigApplicationContext对注解Bean初始化
 		//管理注解Bean定义的容器有两个：AnnotationConfigApplicationContext和AnnotationConfigWebApplicationContex。
 		// 这两个类是专门处理Spring注解方式配置的容器，直接依赖于注解作为容器配置信息来源的IOC容器。
+
+		//init spring bean
 		ApplicationContext ac =new AnnotationConfigApplicationContext(JavaConfig.class);
 		User user = (User) ac.getBean("user");
 //		System.out.println("appName"+ac.getAutowireCapableBeanFactory());
