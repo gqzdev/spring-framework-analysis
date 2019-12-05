@@ -1,31 +1,44 @@
 [![github](https://badgen.net/badge/github/github?icon)](https://github.com/gqzdev)[![csdn](https://badgen.net/badge/blog/ganquanzhong/red)](https://blog.csdn.net/ganquanzhong)[![gitee](https://badgen.net/badge/gitee/zhong96/orange)](https://gitee.com/zhong96)
 
+- [IDEA](https://www.cnblogs.com/gqzdev/p/idea.html)
 
+- JDK8
 
-1. 下载源码
+- Gradle4.10.3
+
+  <center><span style="color:green;font-size:25px;font-weight:bolder;">Spring Framework 5.1x源码分析</span> </center>
+
+1. 下载源码【Spring源码已经经过了处理，下载后按照下面的步骤进行测试】
 
 ```shell
 git clone https://gitee.com/zhong96/spring-framework-5.1.x.git
 ```
 
-2. 构建build时会报错，主要是仓库上面缺少两个target，将其添加到target就行，提交时没有上传
+2. 在[idea](https://www.cnblogs.com/gqzdev/p/idea.html)中导入`spring5`源码构建时，`spring-core`模块报错，缺失`cglib`相关的jar包依赖。
 
->&emsp;&emsp;这个总结下构建源码阅读环境过程中会遇到的问题和解决办法。
+> 为了避免第三方class的冲突，Spring把最新的`cglib`和`obj`巳nesis给重新打包（repack）了，它并没有在源码里提供这部分的代码，而是直接将其放在jar包当中，这也就导致了我们拉取代码后出现编译错误。那么为了画过编译，我们要把缺失的jar补回来![在这里插入图片描述](https://img-blog.csdnimg.cn/20190910100845635.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
 
-1. 在idea中导入spring5源码构建时，spring-core模块报错，缺失cglib相关的jar包依赖。
-> 为了避免第三方class的冲突，Spring把最新的cglib和obj巳nesis给重新打包（repack）了，它并没有在源码里提供这部分的代码，而是直接将其放在jar包当中，这也就导致了我们拉取代码后出现编译错误。那么为了画过编译，我们要把缺失的jar补回来![在这里插入图片描述](https://img-blog.csdnimg.cn/20190910100845635.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
-
-> 2. Aspecu编译问题解决，主要是aspect关键字Java语法违背，需要使用ajc编译器执行。下面就切换ajc编译器，首先需要下载aspectj，并且安装。   
+> 2. `Aspectj`编译问题解决，主要是`aspectj`关键字Java语法违背，需要使用ajc编译器执行。下面就切换ajc编译器，首先需要下载`aspectj`，并且安装。   
 - 为spring-aspect工程添加Facets属性
 ![为spring-aspect工程添加Facets属性](https://img-blog.csdnimg.cn/20191204100207422.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
-- 编译器要改为Ajc，同时要设置Ajc的安装目录，如图1-27所示。记住，要选择到a spec飞jtools.jar这个层面，同时，务必要边择Delegateto Javac选顷，它的作用是只编译AspectJ的Facets项目，而其他则使用JDK代理。如果不勾选，则全部使用Ajc编译，那么会导致编译错误。
+- 编译器要改为`Ajc`，同时要设置Ajc的安装目录，如图1-27所示。记住，要选择到a spec飞jtools.jar这个层面，同时，务必要边择`Delegateto Javac`选顷，它的作用是只编译AspectJ的Facets项目，而其他则使用JDK代理。如果不勾选，则全部使用Ajc编译，那么会导致编译错误。
 ![编译器要改为Ajc](https://img-blog.csdnimg.cn/20191204100438207.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
 
-3. 在idea中导入spring5源码构建时，spring-oxm模块报错，在gradle中找到spring-oxm的==genCastor、genJaxb== 命令。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190910103004223.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
+3. 在[idea](https://www.cnblogs.com/gqzdev/p/idea.html)中导入`spring5`源码构建时，`spring-oxm`模块报错，在gradle中找到spring-oxm的`genCastor`、`genJaxb`命令。
+  ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190910103004223.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
 
-4. build finish
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191203180338769.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
+  经过上面的jar修复操作后，在依赖library中应该有以下几个模块！！！！
+
+  ![library依赖](https://img-blog.csdnimg.cn/20191205150406256.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
+
+
+
+3. build finish
+  ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191203180338769.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
+
+  ![测试环境搭建](https://img-blog.csdnimg.cn/20191205151101269.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
+
+
 
 <img src="src/docs/asciidoc/images/spring-framework.png" width="80" height="80"> Spring Framework
 
