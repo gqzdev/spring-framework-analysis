@@ -69,6 +69,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	//方法注册配置类，并调用refresh()方法刷新容器，触发容器对注解Bean的载入、解析和注册过程
 	public AnnotationConfigApplicationContext() {
 		this.reader = new AnnotatedBeanDefinitionReader(this);
+		//ClassPathBeanDefinitionScanner  扫描
 		this.scanner = new ClassPathBeanDefinitionScanner(this);
 	}
 
@@ -90,9 +91,9 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 */
 	//最常用的构造函数，将涉及到的配置类传递给该构造函数，以实现将相应配置类中的Bean自动注册到容器中
 	public AnnotationConfigApplicationContext(Class<?>... annotatedClasses) {
+		//调用父类构造方法
 		this();
 		register(annotatedClasses);
-//		System.out.println("--注解类信息"+annotatedClasses.getClass().getName());
 		refresh();
 	}
 
@@ -174,6 +175,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 */
 	//为容器注册一个要被处理的注解Bean，
 	// 新注册的Bean，必须手动调用容器的refresh()方法刷新容器，触发容器对新注册的Bean的处理
+	@Override
 	public void register(Class<?>... annotatedClasses) {
 		//必须至少指定一个带注释的类
 		Assert.notEmpty(annotatedClasses, "At least one annotated class must be specified");
@@ -192,6 +194,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 */
 	//扫描指定包路径及其子包下的注解类，
 	// 为了使新添加的类被处理，必须手动调用refresh()方法刷新容器
+	@Override
 	public void scan(String... basePackages) {
 		Assert.notEmpty(basePackages, "At least one base package must be specified");
 		this.scanner.scan(basePackages);

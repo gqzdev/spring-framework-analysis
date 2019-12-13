@@ -236,6 +236,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	 * Prepare the Configuration classes for servicing bean requests at runtime
 	 * by replacing them with CGLIB-enhanced subclasses.
 	 */
+	//准备配置类以在运行时为Bean请求提供服务
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) {
 		int factoryId = System.identityHashCode(beanFactory);
@@ -250,7 +251,8 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 			processConfigBeanDefinitions((BeanDefinitionRegistry) beanFactory);
 		}
 
-		enhanceConfigurationClasses(beanFactory);
+		//enhance 判断是否需要代理，如果需要代理，使用CGLib生成代理类
+		enhanceConfigurationClasses(beanFactory);//org.springframework.context.annotation.AnnotationConfigApplicationContext@57829d67
 		beanFactory.addBeanPostProcessor(new ImportAwareBeanPostProcessor(beanFactory));
 	}
 
@@ -382,7 +384,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 							"is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor " +
 							"return type: Consider declaring such methods as 'static'.");
 				}
-				configBeanDefs.put(beanName, (AbstractBeanDefinition) beanDef);
+				configBeanDefs.put(beanName, (AbstractBeanDefinition) beanDef);//需要代理，添加到configBeanDefs中
 			}
 		}
 		if (configBeanDefs.isEmpty()) {

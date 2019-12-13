@@ -1,6 +1,7 @@
 package com.gqzdev.app;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -11,7 +12,10 @@ import org.springframework.context.annotation.Configuration;
  * @Version
  **/
 
-//@Configuration  //该注解保证@Bean对象为单例的
+//@Configuration 全注解    判断是否需要代理  isFullAnnotated.....
+//该注解保证@Bean对象为单例的
+@Configuration
+@ComponentScan("com.gqzdev.bean")
 public class AppConfig {
 
 	@Bean
