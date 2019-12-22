@@ -486,6 +486,16 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		return this.applicationListeners;
 	}
 
+	/*
+		AbstractApplicationContext.refresh()方法是一个模版方法，定义了一些需要执行的步骤。
+		并不是实现了所有的逻辑，只是充当了一个模版，由其子类实现更多个性化逻辑
+		最核心的两个步骤是
+			1.创建BeanFactory
+			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
+			2.实例化Bean
+			finishBeanFactoryInitialization(beanFactory);
+
+	 */
 	@Override
 	public void refresh() throws BeansException, IllegalStateException {
 		synchronized (this.startupShutdownMonitor) {
@@ -493,7 +503,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			prepareRefresh();
 
 			// Tell the subclass to refresh the internal bean factory.
-			//告诉子类刷新内部bean工厂
+			//告诉子类刷新内部bean工厂  创建BeanFactory
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
 			// Prepare the bean factory for use in this context. 准备在这种情况下使用的bean工厂
@@ -609,6 +619,10 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * @return the fresh BeanFactory instance
 	 * @see #refreshBeanFactory()
 	 * @see #getBeanFactory()
+	 */
+	/*
+		刷新BeanFactory 获取BeanFactory
+		其中refreshBeanFactory是核心
 	 */
 	protected ConfigurableListableBeanFactory obtainFreshBeanFactory() {
 		refreshBeanFactory();
@@ -1351,6 +1365,10 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * @throws BeansException if initialization of the bean factory failed
 	 * @throws IllegalStateException if already initialized and multiple refresh
 	 * attempts are not supported
+	 */
+	/*
+		这里是一个抽象方法，需要其子类来实现逻辑
+		AbstractRefreshableApplicationContext【FileSystemXmlApplicationContext】中完成
 	 */
 	protected abstract void refreshBeanFactory() throws BeansException, IllegalStateException;
 
