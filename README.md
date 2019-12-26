@@ -17,6 +17,7 @@
 1. 🔥下载源码【Spring源码已经经过了处理，下载后按照下面的步骤进行测试】
 
 ```shell
+# 如果你想要一个干净的源码环境，请clone init分支
 git clone https://gitee.com/zhong96/spring-framework-5.1.x.git
 ```
 
