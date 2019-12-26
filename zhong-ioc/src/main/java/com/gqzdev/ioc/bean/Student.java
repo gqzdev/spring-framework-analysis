@@ -1,4 +1,4 @@
-package com.gqzdev.bean;
+package com.gqzdev.ioc.bean;
 
 /**
  * @ClassName: Student

@@ -1,7 +1,8 @@
-package com.gqzdev.config;
+package com.gqzdev.ioc.config;
 
-import com.gqzdev.bean.Student;
-import com.gqzdev.bean.User;
+
+import com.gqzdev.ioc.bean.Student;
+import com.gqzdev.ioc.bean.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
