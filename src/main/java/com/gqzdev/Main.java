@@ -9,6 +9,6 @@ package com.gqzdev;
  **/
 public class Main {
 	public static void main(String[] args){
-		System.out.println("Hello ganquanzhong,吃透Spring源码");
+		System.out.println("Hello ganquanzhong,吃透Spring源码,深入理解原理");
 	}
 }
