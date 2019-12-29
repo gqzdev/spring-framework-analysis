@@ -7,8 +7,27 @@
 
 ## Spring IoC实现方式
    1. XML方式实现
+主要是在一个xml配置文件中声明bean节点
+```xml
+<bean id="user" class="com.gqzdev.ioc.bean.User"></bean>
+``` 
+  
    2. 通过注解方式实现
+需要使用@Component、@Service、@Controller、@Repository
+@Bean等注解
+需要指定包扫描
+1.@Configuration
+  @ComponentScan
+2.在xml文件中指定
+```xml
+    <!--spring管理的bean路径-->
+    <context:component-scan bean="com.gqzdev.ioc.bean"></context>
+```
 
+### Spring IoC实现原理解析
+BeanFactory最顶层接口
+
+ 
 
 ## Bean的生命周期
 | Spring Bean生命周期各阶段 | 相关接口及方法    |

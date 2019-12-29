@@ -486,7 +486,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		return this.applicationListeners;
 	}
 
-	/*
+	/**
 		AbstractApplicationContext.refresh()方法是一个模版方法，定义了一些需要执行的步骤。
 		并不是实现了所有的逻辑，只是充当了一个模版，由其子类实现更多个性化逻辑
 		最核心的两个步骤是
@@ -533,6 +533,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				// Check for listener beans and register them.
 				registerListeners();
 
+				// 在创建BeanFactory的过程中，BeanDefinition注册到了BeanFactory中的一个ConCurretHashMap对象中
+				// 以BeanName为key，BeanDefinition为value
 				// Instantiate all remaining (non-lazy-init) singletons. 实例化所有剩余的（非延迟初始化）单例。
 				finishBeanFactoryInitialization(beanFactory);
 
@@ -620,7 +622,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * @see #refreshBeanFactory()
 	 * @see #getBeanFactory()
 	 */
-	/*
+	/**
 		刷新BeanFactory 获取BeanFactory
 		其中refreshBeanFactory是核心
 	 */
@@ -865,7 +867,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		// Allow for caching all bean definition metadata, not expecting further changes.
 		beanFactory.freezeConfiguration();
 
-		// Instantiate all remaining (non-lazy-init) singletons.
+		// Instantiate all remaining (non-lazy-init) singletons. 实例化bean
 		beanFactory.preInstantiateSingletons();
 	}
 

@@ -778,6 +778,12 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		// While this may not be part of the regular factory bootstrap, it does otherwise work fine.
 		List<String> beanNames = new ArrayList<>(this.beanDefinitionNames);
 
+		/**
+		 下面遍历beanDefinitionNames这个list对象中的BeanName，循环调用getBean(beanName)方法
+		 该方法实际上就是创建Bean并递归构建Bean间的依赖关系，
+		 getBean(beanName)方法最终会调用doGetBean(name,null,null,false)
+		 *
+		 */
 		// Trigger initialization of all non-lazy singleton beans...
 		for (String beanName : beanNames) {
 			RootBeanDefinition bd = getMergedLocalBeanDefinition(beanName);
