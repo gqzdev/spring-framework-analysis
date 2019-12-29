@@ -13,7 +13,7 @@ public class SourceCodeLearning {
         //ApplicationContext：Spring的上下文。通过对源码的类的集成关系可以看出，
         // FileSystemXmlApplicationContext是ApplicationContext的一个标准实现
         ApplicationContext applicationContext =
-                new FileSystemXmlApplicationContext("classpath:spring-chapter2.xml");
+                new FileSystemXmlApplicationContext("classpath:spring-bean02.xml");
         //从容器中获取名字为user的bean
         PressService pressService =
                 (PressService) applicationContext.getBean("pressService");

@@ -28,4 +28,8 @@ public class JavaConfig {
 		return new Student(2020001,"小明",18,"china");
 	}
 
+	@Bean
+	public Student student01(){
+		return new Student();
+	}
 }

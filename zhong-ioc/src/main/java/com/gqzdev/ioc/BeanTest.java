@@ -3,6 +3,7 @@ package com.gqzdev.ioc;
 
 import com.gqzdev.ioc.bean.User;
 import com.gqzdev.ioc.config.JavaConfig;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -23,6 +24,10 @@ public class BeanTest {
 
 		//init spring bean
 		ApplicationContext ac =new AnnotationConfigApplicationContext(JavaConfig.class);
+		String[] definitionNames = ac.getBeanDefinitionNames();
+		for (String name :definitionNames){
+			System.out.println("IoC中bean->"+name);
+		}
 		User user = (User) ac.getBean("user");
 //		System.out.println("appName"+ac.getAutowireCapableBeanFactory());
 		System.out.println(user.toString());

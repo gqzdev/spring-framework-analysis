@@ -2,7 +2,10 @@ package com.gqzdev.ioc.annotation;
 
 import org.springframework.stereotype.Service;
 
-@Service
+/**
+ *
+ */
+@Service("student01")
 public class Student implements HomeWork {
     /**
      * 写家庭作业
