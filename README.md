@@ -1,9 +1,7 @@
-[![wechat-group](https://badgen.net/badge/language/Springframework5)](https://github.com/gqzdev/spring-framework-analysis)
-![last-commit](https://badgen.net/github/last-commit/gqzdev/spring-framework-analysis)
-[![stars](https://badgen.net/github/stars/gqzdev/spring-framework-analysis)](https://github.com/gqzdev/spring-framework-analysis)
-[![forks](https://badgen.net/github/forks/gqzdev/spring-framework-analysis)](https://github.com/gqzdev/spring-framework-analysis)
+[![wechat-group](https://badgen.net/badge/language/Spring-framework5)](https://github.com/gqzdev/spring-framework-analysis)![last-commit](https://badgen.net/github/last-commit/gqzdev/spring-framework-analysis)
+[![stars](https://badgen.net/github/stars/gqzdev/spring-framework-analysis)](https://github.com/gqzdev/spring-framework-analysis)[![forks](https://badgen.net/github/forks/gqzdev/spring-framework-analysis)](https://github.com/gqzdev/spring-framework-analysis)
 [![csdn](https://badgen.net/badge/blog/ganquanzhong/red)](https://blog.csdn.net/ganquanzhong)
-[![cnblogs](https://badgen.net/badge/cnblogs/gqzdev/blue)](https://www.cnblogs.com/gqzdev)
+[![cnblogs](https://badgen.net/badge/cnblogs/gqzdev/orange)](https://www.cnblogs.com/gqzdev)[![shang](https://badgen.net/badge/zhong/赏/blue)](https://www.cnblogs.com/gqzdev/p/shang.html )
 
 
 - [IDEA](https://www.cnblogs.com/gqzdev/p/idea.html)
@@ -47,9 +45,17 @@ git clone https://gitee.com/zhong96/spring-framework-5.1.x.git
 
   ![测试环境搭建](https://img-blog.csdnimg.cn/20191205151101269.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
 
+6. 资源
 
+[Spring官方文档中文版](https://www.springcloud.cc/spring-reference.html)
 
-###  💰💰[感觉不错，支持一下呗！！](https://www.cnblogs.com/gqzdev/p/shang.html)
+[Spring Framework](https://spring.io/projects/spring-framework)
+
+[Spring Framework 5.2.0.BUILD-SNAPSHOT API](https://docs.spring.io/spring/docs/5.2.0.BUILD-SNAPSHOT/javadoc-api/)
+
+[快速了解](https://www.cnblogs.com/gqzdev/p/11667328.html)
+
+##  💰💰[感觉不错，支持一下呗！！](https://www.cnblogs.com/gqzdev/p/shang.html)
 
 
 
