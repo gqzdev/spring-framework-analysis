@@ -7,11 +7,14 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-/**
- * @Author zhouguanya
- * @Date 2018/8/18
- * @Description Bean生命周期
- */
+ /**
+  * @description: Bean生命周期
+  * @author ganquanzhong
+  * @date   2019/12/30 9:24
+  *
+  *	接口BeanNameAware ApplicationContextAware	InitializingBean DisposableBean
+  *
+  */
 public class BeanLifecycle implements BeanNameAware, ApplicationContextAware, InitializingBean, DisposableBean {
     /**
      * 1. 构造器
@@ -45,8 +48,10 @@ public class BeanLifecycle implements BeanNameAware, ApplicationContextAware, In
     }
 
     /**
-     * 5. init-method属性指定的方法
-     */
+	 *  init-method="lifecycleInit"
+	 *
+	 *  5. init-method属性指定的方法
+	 */
     public void lifecycleInit() {
         System.out.println("5. 【Bean级别】init-method指定的方法执行了");
     }
@@ -67,7 +72,8 @@ public class BeanLifecycle implements BeanNameAware, ApplicationContextAware, In
     }
 
     /**
-     * 8. destroy-method属性指定的方法
+     * destroy-method="lifecycleInitDestroy"
+	 * 8. destroy-method属性指定的方法
      */
     public void lifecycleInitDestroy() {
         System.out.println("8. 【Bean级别】destroy-method属性指定的方法执行了");

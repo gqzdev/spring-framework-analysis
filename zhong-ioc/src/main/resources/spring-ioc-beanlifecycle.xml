@@ -4,7 +4,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--BeanLifecycle-->
-    <bean id="beanLifecycle" class="com.gqzdev.lifecycle.beanlifcycle.BeanLifecycle" init-method="lifecycleInit" destroy-method="lifecycleInitDestroy">
+    <bean id="beanLifecycle" class="com.gqzdev.lifecycle.beanlifcycle.BeanLifecycle"
+		  init-method="lifecycleInit" destroy-method="lifecycleInitDestroy">
     </bean>
 
 </beans>

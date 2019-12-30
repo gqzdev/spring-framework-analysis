@@ -5,11 +5,11 @@ import org.springframework.beans.factory.config.InstantiationAwareBeanPostProces
 
 import java.beans.PropertyDescriptor;
 
-/**
- * @Author zhouguanya
- * @Date 2018/8/19
- * @Description 容器级生命周期
- */
+ /**
+  * @description: 容器级生命周期
+  * @Author: ganquanzhong
+  * @Date:  2019/12/30 9:34
+  */
 public class ContainerLifecycle extends InstantiationAwareBeanPostProcessorAdapter {
     /**
      * 构造器

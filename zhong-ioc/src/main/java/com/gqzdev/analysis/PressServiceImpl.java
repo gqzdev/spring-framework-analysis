@@ -1,10 +1,10 @@
 package com.gqzdev.analysis;
 
-/**
- * @Author zhouguanya
- * @Date 2018/8/17
- * @Description 出版社类
- */
+ /**
+  * @description: 出版社类
+  * @Author: ganquanzhong
+  * @Date:  2019/12/30 9:42
+  */
 public class PressServiceImpl implements PressService {
     /**
      * 依赖BookService

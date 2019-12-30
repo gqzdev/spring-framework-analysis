@@ -1,13 +1,13 @@
 package com.gqzdev.analysis;
 
-/**
- * @Author zhouguanya
- * @Date 2018/8/17
- * @Description 图书
- */
+ /**
+  * @description: 图书
+  * @Author: ganquanzhong
+  * @Date:  2019/12/30 9:40
+  */
 public class BookServiceImpl implements BookService {
     @Override
     public double getBookPrice() {
-        return 508.8;
+        return 78.8;
     }
 }
