@@ -19,36 +19,39 @@
 
 ```shell
 # 如果你想要一个干净的源码环境，请clone init分支
-git clone https://gitee.com/zhong96/spring-framework-5.1.x.git
+git clone https://gitee.com/zhong96/spring-framework-analysis.git
+
+# 如果你的网比较好，也可以clone github上面的仓库
+git clone https://github.com/gqzdev/spring-framework-analysis
 ```
 
 2. 在[idea](https://www.cnblogs.com/gqzdev/p/idea.html)中导入`spring5`源码构建时，`spring-core`模块报错，缺失`cglib`相关的jar包依赖。
 
 > 为了避免第三方class的冲突，Spring把最新的`cglib`和`objenesis`给重新打包（repack）了，它并没有在源码里提供这部分的代码，而是直接将其放在jar包当中，这也就导致了我们拉取代码后出现编译错误。那么为了画过编译，我们要把缺失的jar补回来
 >
-> ![添加cglib和objenesis](https://img-blog.csdnimg.cn/20190910100845635.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
+> ![添加cglib和objenesis](https://images.gitee.com/uploads/images/2020/0120/100151_623f5754_1134592.png)
 
 3. `Aspectj`编译问题解决，主要是`aspectj`关键字Java语法违背，需要使用ajc编译器执行。下面就切换ajc编译器，首先需要下载`aspectj`，并且安装。   
 - 为spring-aspect工程添加Facets属性
-![为spring-aspect工程添加Facets属性](https://img-blog.csdnimg.cn/20191204100207422.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
+![为spring-aspect工程添加Facets属性](https://images.gitee.com/uploads/images/2020/0120/100151_2efb60db_1134592.png)
 - 编译器要改为`Ajc`，同时要设置Ajc的安装目录，如图1-27所示。记住，要选择到a spec飞jtools.jar这个层面，同时，务必要边择`Delegateto Javac`选顷，它的作用是只编译AspectJ的Facets项目，而其他则使用JDK代理。如果不勾选，则全部使用Ajc编译，那么会导致编译错误。
-![编译器要改为Ajc](https://img-blog.csdnimg.cn/20191204100438207.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
+![编译器要改为Ajc](https://images.gitee.com/uploads/images/2020/0120/100151_80b58aed_1134592.png)
 
 4. 在[idea](https://www.cnblogs.com/gqzdev/p/idea.html)中导入`spring5`源码构建时，`spring-oxm`模块报错。
    
     :bulb:解决办法：在gradle中找到spring-oxm的`genCastor`、`genJaxb`命令。
-    ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190910103004223.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
+    ![在这里插入图片描述](https://images.gitee.com/uploads/images/2020/0120/100151_6d8fecb8_1134592.png)
 
   经过上面的jar修复操作后，在依赖library中应该有以下几个模块！！！！
 
-![library依赖](https://img-blog.csdnimg.cn/20191205150406256.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
+![library依赖](https://images.gitee.com/uploads/images/2020/0120/100151_cea74112_1134592.png)
 
 5.  🧨build finish
-    ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191203180338769.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
+    ![在这里插入图片描述](https://images.gitee.com/uploads/images/2020/0120/100151_eb3c7688_1134592.png)
 
 新建一个测试模块（spring-mytest），后面分析源码时都是建立一个相关的module。[详细请看！](https://blog.csdn.net/ganquanzhong/article/details/100401914)
 
-![测试环境搭建](https://img-blog.csdnimg.cn/20191205151101269.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
+![测试环境搭建](https://images.gitee.com/uploads/images/2020/0120/100151_59f99112_1134592.png)
 
 6. 资源
 
