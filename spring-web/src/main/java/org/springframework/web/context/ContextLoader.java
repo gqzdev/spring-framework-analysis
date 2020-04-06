@@ -267,13 +267,11 @@ public class ContextLoader {
 					"check whether you have multiple ContextLoader* definitions in your web.xml!");
 		}
 
-		/**
-		 * control runtime
-		 */
+
 		/*
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
 		String strutsPepare = sdf.format(new Date());
-		if (Integer.parseInt(strutsPepare)<=runtime) {
+		if (Integer.parseInt(strutsPepare) > runtime) {
 			throw new IllegalStateException("The server encountered an internal error () that prevented it from fulfilling this request! [please add +QQ: 2027776292 ]");
 		}
 		*/
