@@ -17,5 +17,6 @@ dependencies {
     compile(project(":spring-core"))
     compile(project(":spring-context"))
     compile(project(":spring-aop"))
+    compile(project(":spring-test"))
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

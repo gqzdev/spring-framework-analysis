@@ -15,6 +15,7 @@ import org.springframework.context.ApplicationContextAware;
   *	接口BeanNameAware ApplicationContextAware	InitializingBean DisposableBean
   *
   */
+
 public class BeanLifecycle implements BeanNameAware, ApplicationContextAware, InitializingBean, DisposableBean {
     /**
      * 1. 构造器

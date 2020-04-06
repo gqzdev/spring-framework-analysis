@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 
 //@Configuration 全注解    判断是否需要代理  isFullAnnotated.....
 //该注解保证@Bean对象为单例的
+
 @Configuration
 @ComponentScan("com.gqzdev.bean")
 public class AppConfig {

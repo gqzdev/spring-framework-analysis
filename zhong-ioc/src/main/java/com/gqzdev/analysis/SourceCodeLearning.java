@@ -16,8 +16,7 @@ public class SourceCodeLearning {
                 new FileSystemXmlApplicationContext("classpath:spring-bean02.xml");
 
         //从容器中获取名字为user的bean
-        PressService pressService =
-				(PressService) applicationContext.getBean("pressService");
+        PressService pressService =	(PressService) applicationContext.getBean("pressService");
 
         //调用bean的方法
         String price = pressService.say();

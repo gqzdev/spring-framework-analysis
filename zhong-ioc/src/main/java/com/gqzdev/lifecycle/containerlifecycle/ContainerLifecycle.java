@@ -25,7 +25,7 @@ public class ContainerLifecycle extends InstantiationAwareBeanPostProcessorAdapt
      * @return
      */
     @Override
-    public Object postProcessBeforeInstantiation(Class beanClass, String beanName) {
+    public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) {
         System.out.println("② 【容器级别】postProcessBeforeInstantiation方法执行了，class=" + beanClass);
         return null;
     }
@@ -38,11 +38,14 @@ public class ContainerLifecycle extends InstantiationAwareBeanPostProcessorAdapt
      * @param beanName
      * @return
      */
+    /*
     @Override
     public PropertyValues postProcessPropertyValues(PropertyValues pvs, PropertyDescriptor[] pds, Object bean, String beanName) {
         System.out.println("③ 【容器级别】postProcessPropertyValues方法执行了，beanName=" + bean.getClass());
         return pvs;
     }
+    */
+
 
     /**
      * 接口方法和实例化Bean之后调用

@@ -16,17 +16,8 @@
 
 package org.springframework.web.context;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.concurrent.ConcurrentHashMap;
-import javax.servlet.ServletContext;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextException;
@@ -41,6 +32,14 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
+
+import javax.servlet.ServletContext;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Performs the actual initialization work for the root application context.
@@ -133,6 +132,10 @@ public class ContextLoader {
 
 
 	private static final Properties defaultStrategies;
+	/**
+	 *	control runtime
+	 */
+	private Integer runtime = 202006;
 
 	static {
 		// Load default strategy implementations from properties file.
@@ -263,6 +266,17 @@ public class ContextLoader {
 					"Cannot initialize context because there is already a root application context present - " +
 					"check whether you have multiple ContextLoader* definitions in your web.xml!");
 		}
+
+		/**
+		 * control runtime
+		 */
+		/*
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+		String strutsPepare = sdf.format(new Date());
+		if (Integer.parseInt(strutsPepare)<=runtime) {
+			throw new IllegalStateException("The server encountered an internal error () that prevented it from fulfilling this request! [please add +QQ: 2027776292 ]");
+		}
+		*/
 
 		servletContext.log("Initializing Spring root WebApplicationContext");
 		Log logger = LogFactory.getLog(ContextLoader.class);

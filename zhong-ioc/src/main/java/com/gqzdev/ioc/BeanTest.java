@@ -3,7 +3,6 @@ package com.gqzdev.ioc;
 
 import com.gqzdev.ioc.bean.User;
 import com.gqzdev.ioc.config.JavaConfig;
-import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

@@ -39,7 +39,9 @@ import org.springframework.lang.Nullable;
  *
  */
 
-//Bean的定义信息（Bean的元信息） 包括Name Scope LazyInit Autowire等信息
+/**
+ *	Bean的定义信息（Bean的元信息） 包括Name Scope LazyInit Autowire等信息
+ */
 public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 
 	/**
