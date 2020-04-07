@@ -22,6 +22,8 @@ classes/
 buildSrc/build
 /spring-*/build
 /zhong-*/build
+/spring-*/out
+/zhong-*/out
 /src/asciidoc/build
 target/*
 !/src/main/java/org/springframework/aop/target
