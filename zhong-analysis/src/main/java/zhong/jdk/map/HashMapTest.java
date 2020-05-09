@@ -9,6 +9,7 @@ import java.util.HashMap;
  * @author: ganquanzhong
  * @date: 2020/4/7 13:44
  */
+
 public class HashMapTest extends Object{
 	public static void main(String[] args){
 		Key key1 = new Key("nihao");
@@ -36,12 +37,14 @@ class Key{
 		return name;
 	}
 
+
 	/**
 	 *	HashMap 是数组+链表的方式实现  jdk8后加入了红黑树【1.】
 	 *	重写hashCode方法，保证同一个对象实例的hashcode相同
 	 *  同时还要重写equals方法  保证值相同
 	 *
 	 */
+
 
 	public int hashCode(){
 		System.out.println(name.hashCode());
@@ -57,9 +60,10 @@ class Key{
 		}
 	}
 
-	/**
+	 /**
 	 *  String中计算hashCode的方法
 	 */
+
 
 	public  int calcHashCode(String name){
 		int hash = 0;
@@ -75,6 +79,7 @@ class Key{
 
 
 	/*
+
     （1）如果作用于基本数据类型的变量（byte,short,char,int,long,float,double,boolean ）,
 		对于==而言，则直接比较其存储的"值"是否相等
 
@@ -91,4 +96,5 @@ class Key{
 
 	其他的一些类诸如Double，Date，Integer等，都对equals方法进行了重写用来比较指向的对象所存储的内容是否相等。
 	*/
+
 }
