@@ -131,9 +131,10 @@ public class ContextLoader {
 
 	private static final Properties defaultStrategies;
 	/**
+	 *	gqzdev 自定义
 	 *	control runtime
 	 */
-	private Integer runtime = 202006;
+	private Integer runtime = 202012;
 
 	static {
 		// Load default strategy implementations from properties file.
@@ -266,7 +267,7 @@ public class ContextLoader {
 		}
 
 
-
+		/************控制版本*************/
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
 		String strutsPepare = sdf.format(new Date());
 		if (Integer.parseInt(strutsPepare) > runtime) {

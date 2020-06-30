@@ -56,6 +56,16 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.aop.framework.ProxyFactoryBean
  * @see org.springframework.jndi.JndiObjectFactoryBean
  */
+
+/*
+ * FactoryBean  有三个方法
+ * 		getObject()
+ * 		getObjectType()
+ * 		isSingleton()
+ *
+ * 	FeignClient中有实现
+ */
+
 public interface FactoryBean<T> {
 
 	/**

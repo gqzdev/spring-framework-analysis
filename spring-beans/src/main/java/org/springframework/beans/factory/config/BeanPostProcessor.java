@@ -40,6 +40,8 @@ import org.springframework.lang.Nullable;
  * @see ConfigurableBeanFactory#addBeanPostProcessor
  * @see BeanFactoryPostProcessor
  */
+//在Bean初始化时处理  有before after
+// AOP就是在这个阶段去实现的
 public interface BeanPostProcessor {
 
 	/**

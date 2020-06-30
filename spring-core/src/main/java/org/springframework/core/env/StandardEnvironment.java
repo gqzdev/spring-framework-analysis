@@ -51,6 +51,9 @@ package org.springframework.core.env;
  * @see SystemEnvironmentPropertySource
  * @see org.springframework.web.context.support.StandardServletEnvironment
  */
+/* 	完成 对System.getProperties()、 System.getenv()信息的封装
+ *	后期需要使用到environment的信息时，直接获取就行
+ */
 public class StandardEnvironment extends AbstractEnvironment {
 
 	/** System environment property source name: {@value}. */

@@ -1,7 +1,6 @@
 package com.gqzdev.ioc.config;
 
 
-import com.gqzdev.ioc.bean.Student;
 import com.gqzdev.ioc.bean.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -23,7 +22,7 @@ public class JavaConfig {
 		return new User(101,"ganquanzhong","pwd","13995978321","china");
 	}
 
-	@Bean
+	/*@Bean
 	public Student student(){
 		return new Student(2020001,"小明",18,"china");
 	}
@@ -31,5 +30,5 @@ public class JavaConfig {
 	@Bean
 	public Student student01(){
 		return new Student();
-	}
+	}*/
 }
