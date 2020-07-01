@@ -1,7 +1,5 @@
 package com.gqzdev.web;
 
-import org.apache.catalina.LifecycleException;
-
 /**
  * @ClassName Test
  * @Description
@@ -12,10 +10,10 @@ import org.apache.catalina.LifecycleException;
 public class SpringBootAppliction {
 
 	public static void main(String[] args){
-		try {
+		/*try {
 			SpringApplication.run();
 		} catch (LifecycleException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 }

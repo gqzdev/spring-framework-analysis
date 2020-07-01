@@ -49,7 +49,7 @@ import java.security.AccessControlContext;
  * @see ConfigurableListableBeanFactory
  *
  */
-//可配置的BeanFactory
+//提供配置 BeanFactory 的各种方法。
 public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, SingletonBeanRegistry {
 
 	/**

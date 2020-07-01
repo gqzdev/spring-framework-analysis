@@ -74,6 +74,16 @@ import java.util.stream.Stream;
  * @see #getBean
  * @see #resolveDependency
  */
+/*
+ * XmlBeanFactory 继承自 DefaultListableBeanFactory ，
+ * 而DefaultListableBeanFactory 是整个bean
+ * 加载的核心部分，是Spring 注册及加载b巳an 的默认实现，而对于Xm!BeanFactory 与
+ * DefaultListableBeanFactory 不同的地方其实是在XmlBeanFactory 中使用了自定义的XML 读取器
+ * XmlBeanDefinitionReader ，实现了个性化的BeanDefinitionReader读取，DefaultListableBeanFacto1y
+ * 继承了AbstractAutowireCapableBeanFactory 并实现了ConfigurableListableBeanFacto可以及
+ *  BeanDefinitionRegistry 接口
+ *
+ */
 @SuppressWarnings("serial")
 public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory
 		implements ConfigurableListableBeanFactory, BeanDefinitionRegistry, Serializable {
@@ -780,15 +790,15 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
 		/**
 		 下面遍历beanDefinitionNames这个list对象中的BeanName，循环调用getBean(beanName)方法
-		 该方法实际上就是创建Bean并递归构建Bean间的依赖关系，
+		 该方法实际上就是创建Bean 并递归构建Bean间的依赖关系，
 		 getBean(beanName)方法最终会调用doGetBean(name,null,null,false)
 		 *
 		 */
 		// Trigger initialization of all non-lazy singleton beans...
 		for (String beanName : beanNames) {
 			RootBeanDefinition bd = getMergedLocalBeanDefinition(beanName);
-			if (!bd.isAbstract() && bd.isSingleton() && !bd.isLazyInit()) {
-				if (isFactoryBean(beanName)) {
+			if (!bd.isAbstract() && bd.isSingleton() && !bd.isLazyInit()) { //判断bd 抽象 单例 懒加载
+				if (isFactoryBean(beanName)) { //判断是不是FactoryBean
 					Object bean = getBean(FACTORY_BEAN_PREFIX + beanName);
 					if (bean instanceof FactoryBean) {
 						final FactoryBean<?> factory = (FactoryBean<?>) bean;
@@ -807,7 +817,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 						}
 					}
 				}
-				else {
+				else { //getBean  真正做事的是doGetBean
 					getBean(beanName);
 				}
 			}

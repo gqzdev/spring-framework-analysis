@@ -494,43 +494,47 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 			2.实例化Bean
 			finishBeanFactoryInitialization(beanFactory);
-
+		refresh()方法中有14个方法
 	 */
 	@Override
 	public void refresh() throws BeansException, IllegalStateException {
 		synchronized (this.startupShutdownMonitor) {
-			// Prepare this context for refreshing.
+			// Prepare this context for refreshing.  准备刷新 记录开始时间  设置几个标志位  验证环境属性
 			prepareRefresh();
 
 			// Tell the subclass to refresh the internal bean factory.
-			//告诉子类刷新内部bean工厂  创建BeanFactory
+			// 告诉子类刷新内部bean工厂  创建BeanFactory  并且获取BeanDefinition的定义信息
+			/**
+			 *
+			 */
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
-			// Prepare the bean factory for use in this context. 准备在这种情况下使用的bean工厂
+			// Prepare the bean factory for use in this context.
+			// 准备在这种情况下使用的bean工厂  向beanFactory中设置一些属性
 			prepareBeanFactory(beanFactory);
 
 			try {
 				// Allows post-processing of the bean factory in context subclasses.
-				//允许在上下文子类中对bean工厂进行后处理  完成了扫描
+				// 允许在上下文 子类中对bean工厂进行后处理  由子类去实现； 主要是自定义去使用
 				postProcessBeanFactory(beanFactory);
 
 				// Invoke factory processors registered as beans in the context.
-				//调用工厂处理器 注册bean  完成扫描  代理
+				//调用工厂后置处理器  注册bean  这个过程使用到代理
 				invokeBeanFactoryPostProcessors(beanFactory);
 
-				// Register bean processors that intercept bean creation.
+				// Register bean processors that intercept bean creation.  注册BeanPostProcessor
 				registerBeanPostProcessors(beanFactory);
 
-				// Initialize message source for this context.
+				// Initialize message source for this context.  完成国际化 i18n
 				initMessageSource();
 
-				// Initialize event multicaster for this context.
+				// Initialize event multicaster for this context. 初始化事件播发器
 				initApplicationEventMulticaster();
 
-				// Initialize other special beans in specific context subclasses.
+				// Initialize other special beans in specific context subclasses. 扩展的一个实现  springboot内嵌的tomcat在这个阶段完成
 				onRefresh();
 
-				// Check for listener beans and register them.
+				// Check for listener beans and register them. 注册监听器
 				registerListeners();
 
 				// 在创建BeanFactory的过程中，BeanDefinition注册到了BeanFactory中的一个ConCurretHashMap对象中
@@ -624,9 +628,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * @see #refreshBeanFactory()
 	 * @see #getBeanFactory()
 	 */
-	/**
-		刷新BeanFactory 获取BeanFactory
-		其中refreshBeanFactory是核心
+	/*
+	 * 刷新BeanFactory 获取BeanFactory
+	 * 其中refreshBeanFactory是核心
 	 */
 	protected ConfigurableListableBeanFactory obtainFreshBeanFactory() {
 		refreshBeanFactory();
@@ -870,7 +874,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		beanFactory.freezeConfiguration();
 
 		// Instantiate all remaining (non-lazy-init) singletons.
-		// 实例化bean  在DefaultListableBeanFactory.preInstantiateSingletons中实现具体逻辑
+		// 核心步骤 实例化bean  在DefaultListableBeanFactory.preInstantiateSingletons中实现具体逻辑
 		beanFactory.preInstantiateSingletons();
 	}
 
@@ -1373,6 +1377,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 */
 	/*
 		这里是一个抽象方法，需要其子类来实现逻辑
+		org.springframework.context.support.AbstractRefreshableApplicationContext.refreshBeanFactory
 		AbstractRefreshableApplicationContext【FileSystemXmlApplicationContext】中完成
 	 */
 	protected abstract void refreshBeanFactory() throws BeansException, IllegalStateException;

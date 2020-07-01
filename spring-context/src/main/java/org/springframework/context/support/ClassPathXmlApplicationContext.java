@@ -81,6 +81,11 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 	 * @param configLocation resource location
 	 * @throws BeansException if context creation failed
 	 */
+	/*
+	 * 创建一个新的ClassPathXmlApplicationContext，加载从给定的XML文件，并自动刷新上下文。
+	 *  这里是spring-bean01.xml 可以传入多个xml文件，String类型的数组
+	 *  refresh一直为true 自动刷新
+	 */
 	public ClassPathXmlApplicationContext(String configLocation) throws BeansException {
 		this(new String[] {configLocation}, true, null);
 	}
@@ -139,7 +144,7 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 			throws BeansException {
 
 		super(parent);
-		//配置资源的位置
+		//configLocations  配置资源xml的位置
 		setConfigLocations(configLocations);
 		//保证只会初始化一次
 		if (refresh) {

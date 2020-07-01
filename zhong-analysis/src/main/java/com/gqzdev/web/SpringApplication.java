@@ -1,15 +1,5 @@
 package com.gqzdev.web;
 
-import com.gqzdev.web.config.Appconfig;
-import org.apache.catalina.Context;
-import org.apache.catalina.LifecycleException;
-import org.apache.catalina.Wrapper;
-import org.apache.catalina.startup.Tomcat;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
-
-import java.io.File;
-
 /**
  * @ClassName Application
  * @Description
@@ -21,11 +11,11 @@ import java.io.File;
 
 public class SpringApplication {
 
-	public static void run() throws LifecycleException {
+	/*public static void run() throws LifecycleException {
 
-		/**
-		 * 在run()方法中   初始化spring环境  并且启动tomcat
-		 */
+
+		// 在run()方法中   初始化spring环境  并且启动tomcat
+
 		// Spring IOC
 		AnnotationConfigWebApplicationContext ac = new AnnotationConfigWebApplicationContext();
 		ac.register(Appconfig.class);
@@ -53,5 +43,5 @@ public class SpringApplication {
 		tomcat.getServer().await();
 
 
-	}
+	}*/
 }

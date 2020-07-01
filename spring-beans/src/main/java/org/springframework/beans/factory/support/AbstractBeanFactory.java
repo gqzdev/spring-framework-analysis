@@ -150,7 +150,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	// Implementation of BeanFactory interface
 	//---------------------------------------------------------------------
 
-	/**
+	/** 在阅读源码中，do开头的，都是正真干活的地方。需要重点理解
 	 *	doGetBean才是真正从IoC容器获取bean的过程， 核心过程再doGetBean中
 	 *
 	 */
@@ -198,7 +198,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * @throws BeansException if the bean could not be created
 	 */
 
-	//真正实现向IOC容器获取Bean的功能，也是触发依赖注入功能的地方
+	//真正实现向IOC容器获取Bean的功能，也是触发 依赖注入 功能的地方   核心步骤是createBean
 	@SuppressWarnings("unchecked")
 	protected <T> T doGetBean(final String name, @Nullable final Class<T> requiredType,
 			@Nullable final Object[] args, boolean typeCheckOnly) throws BeansException {
@@ -288,7 +288,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				 * 接着根据依赖的BeanName递归调用getBean()方法
 				 * 直到调用getSingleton()返回依赖
 				 */
-				// Guarantee initialization of beans that the current bean depends on.
+				// Guarantee initialization of beans that the current bean depends on.  bean的依赖次序 属性
 				String[] dependsOn = mbd.getDependsOn();
 				if (dependsOn != null) {
 					for (String dep : dependsOn) {

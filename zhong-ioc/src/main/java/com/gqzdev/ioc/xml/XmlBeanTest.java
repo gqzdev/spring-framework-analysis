@@ -1,10 +1,13 @@
-package com.gqzdev.ioc;
+package com.gqzdev.ioc.xml;
 
 import com.gqzdev.ioc.bean.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
+ * 通过ClassPathXmlApplication方式 读入
+ *
+ *
  * @ClassName Main
  * @Description
  * @Author ganquanzhong
@@ -12,7 +15,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @Version
  **/
 
-public class Main {
+public class XmlBeanTest {
 	public static void main(String[] args){
 		ApplicationContext ac = new ClassPathXmlApplicationContext("spring-bean01.xml");
 

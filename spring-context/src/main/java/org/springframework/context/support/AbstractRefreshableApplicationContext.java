@@ -16,14 +16,14 @@
 
 package org.springframework.context.support;
 
-import java.io.IOException;
-
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextException;
 import org.springframework.lang.Nullable;
+
+import java.io.IOException;
 
 /**
  * Base class for {@link org.springframework.context.ApplicationContext}
@@ -123,7 +123,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	@Override
 	protected final void refreshBeanFactory() throws BeansException {
 		/*
-			首先检查当前上下文是否存在BeanFactory，
+			首先检查当前上下文 是否存在BeanFactory，
 			如果存在BeanFactory，先销毁Bean和BeanFactory，然后创建BeanFactory
 		 */
 		if (hasBeanFactory()) {
@@ -132,12 +132,21 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 		}
 		try {
 			/*
-				创建一个空的BeanFactory
+				创建一个 DefaultListableBeanFactory类型 的BeanFactory
 				重点在loadBeanDefinitions(beanFactory)方法
 			 */
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
 			beanFactory.setSerializationId(getId());
 			customizeBeanFactory(beanFactory);
+			/**
+
+			 加载BeanDefinition
+			 不同的方式，选择不同的Reader
+			 1.xml文件   {@link AbstractXmlApplicationContext}AbstractXmlApplicationContext.loadBeanDefinitions
+			 2.注解方式   AnnotationConfigWebApplicationContext
+			 3.GroovyWeb   GroovyWebApplicationContext
+			 4.web环境的xml XmlWebApplicationContext
+			 */
 			loadBeanDefinitions(beanFactory);
 			synchronized (this.beanFactoryMonitor) {
 				this.beanFactory = beanFactory;
