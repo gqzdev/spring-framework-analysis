@@ -65,11 +65,14 @@ git clone https://github.com/gqzdev/spring-framework-analysis
 
 ##  💰💰[感觉不错，支持一下呗！！](https://www.cnblogs.com/gqzdev/p/shang.html)
 
+ **为了方便学习交流，大家一起进步！** 
+ 扫码，加入微信群
+
+![加群学习](https://images.gitee.com/uploads/images/2020/0701/135247_9d63c4dd_1134592.png "微信学习群.png")
 
 
 
 
-<img src="src/docs/asciidoc/images/spring-framework.png" width="80" height="80"> Spring Framework
 
 ## 		中文：
 
@@ -101,6 +104,7 @@ git clone https://github.com/gqzdev/spring-framework-analysis
 ## 执照
 
 ​		Spring Framework是在[Apache许可](https://www.apache.org/licenses/LICENSE-2.0)的2.0版下发布的。
+
 
 
 
