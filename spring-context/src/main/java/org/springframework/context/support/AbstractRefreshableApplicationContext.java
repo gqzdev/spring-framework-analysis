@@ -186,7 +186,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			return (this.beanFactory != null);
 		}
 	}
-
+    // 就是获取 refreshBeanFactory 方法所创建的 BeanFactory
 	@Override
 	public final ConfigurableListableBeanFactory getBeanFactory() {
 		synchronized (this.beanFactoryMonitor) {

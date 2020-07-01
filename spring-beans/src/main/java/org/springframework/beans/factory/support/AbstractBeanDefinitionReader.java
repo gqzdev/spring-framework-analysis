@@ -45,7 +45,7 @@ import java.util.Set;
  * @since 11.12.2003
  * @see BeanDefinitionReaderUtils
  */
-//对EnvironmentCapable 、BeanDefinitionReader 类定义的功能进行实现。
+// 对EnvironmentCapable 、BeanDefinitionReader 类定义的功能进行实现。
 public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader, EnvironmentCapable {
 
 	/** Logger available to subclasses. */

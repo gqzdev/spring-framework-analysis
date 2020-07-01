@@ -19,4 +19,6 @@
 		<constructor-arg index="3" value="15571398101"></constructor-arg>
 		<constructor-arg index="4" value="中国"></constructor-arg>
 	</bean>
+
+	<bean id="customBeanFactoryPostProcessor" class="com.gqzdev.ioc.postprocessor.CustomBeanFactoryPostProcessor"></bean>
 </beans>

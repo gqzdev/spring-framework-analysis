@@ -19,7 +19,7 @@ package org.springframework.beans.factory.config;
 import org.springframework.beans.BeansException;
 import org.springframework.lang.Nullable;
 
-/**
+/**允许自定义修改新的bean实例 工厂钩子
  * Factory hook that allows for custom modification of new bean instances,
  * e.g. checking for marker interfaces or wrapping them with proxies.
  *
@@ -40,8 +40,11 @@ import org.springframework.lang.Nullable;
  * @see ConfigurableBeanFactory#addBeanPostProcessor
  * @see BeanFactoryPostProcessor
  */
-//在Bean初始化时处理  有before after
-// AOP就是在这个阶段去实现的
+/*
+	这个接口只有两个方法，他允许自定义的去修改spring给我们创建的类。
+	在Bean初始化时处理  有before after
+	AOP就是在这个阶段去实现的
+ */
 public interface BeanPostProcessor {
 
 	/**
