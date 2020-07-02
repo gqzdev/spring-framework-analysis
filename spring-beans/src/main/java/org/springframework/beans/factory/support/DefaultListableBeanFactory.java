@@ -406,7 +406,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	//---------------------------------------------------------------------
 	// Implementation of ListableBeanFactory interface
 	//---------------------------------------------------------------------
-
+	// 检查这个beanDefinitionMap是否包含具有给定名称的bean定义。
 	@Override
 	public boolean containsBeanDefinition(String beanName) {
 		Assert.notNull(beanName, "Bean name must not be null");
