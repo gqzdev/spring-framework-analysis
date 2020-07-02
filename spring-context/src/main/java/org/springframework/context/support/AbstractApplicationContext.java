@@ -300,6 +300,12 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * a custom {@link ConfigurableEnvironment} implementation.
 	 */
 	protected ConfigurableEnvironment createEnvironment() {
+		/*
+			创建StandardEnvironment时，调用无参构造方法
+				会去调用父类AbstractEnvironment的构造方法，构造方法里面调用customizePropertySources(this.propertySources);
+				这个方法在期子类StandardEnvironment去实现的。
+			其实就是调用StandardEnvironment.customizePropertySources方法，完成环境信息的保持
+		 */
 		return new StandardEnvironment();
 	}
 

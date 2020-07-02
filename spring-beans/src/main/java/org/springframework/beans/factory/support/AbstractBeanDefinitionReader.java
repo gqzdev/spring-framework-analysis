@@ -248,7 +248,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 			return count;
 		}
 	}
-
+	// 加载配置文件 ***.xml
 	@Override
 	public int loadBeanDefinitions(String... locations) throws BeanDefinitionStoreException {
 		Assert.notNull(locations, "Location array must not be null");
