@@ -817,7 +817,8 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 						}
 					}
 				}
-				else { //getBean  真正做事的是doGetBean
+				else {
+					//getBean  真正做事的是doGetBean
 					getBean(beanName);
 				}
 			}
@@ -846,7 +847,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	// Implementation of BeanDefinitionRegistry interface
 	//---------------------------------------------------------------------
 
-	//向IoC容器中注册解析的BeanDefinition
+	// 向IoC容器中注册解析的BeanDefinition
 	@Override
 	public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition)
 			throws BeanDefinitionStoreException {
@@ -857,6 +858,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		//校验解析的BeanDefinition
 		if (beanDefinition instanceof AbstractBeanDefinition) {
 			try {
+				// 验证这个bean定义
 				((AbstractBeanDefinition) beanDefinition).validate();
 			}
 			catch (BeanDefinitionValidationException ex) {
@@ -864,9 +866,10 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 						"Validation of bean definition failed", ex);
 			}
 		}
-
+		// 首先从beanDefinitionMap获取bean，看是否存在
 		BeanDefinition existingDefinition = this.beanDefinitionMap.get(beanName);
 		if (existingDefinition != null) {
+			// beanDefinitionMap 中没有 beanDefinition
 			if (!isAllowBeanDefinitionOverriding()) {
 				throw new BeanDefinitionOverrideException(beanName, beanDefinition, existingDefinition);
 			}
@@ -892,13 +895,14 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 							"] with [" + beanDefinition + "]");
 				}
 			}
+			// 将解析完成的 BeanDefinition 放入Map中
 			this.beanDefinitionMap.put(beanName, beanDefinition);
 		}
 		else {
+			//检查该工厂的bean创建阶段是否已经开始，即是否有任何bean在此期间被标记为已创建。
 			if (hasBeanCreationStarted()) {
 				// Cannot modify startup-time collection elements anymore (for stable iteration)
-
-				//注册的过程需要保存数据的一致性，使用synchronized 同步
+				// 注册的过程需要保存数据的一致性，使用synchronized 同步
 				synchronized (this.beanDefinitionMap) {
 					//将一个一个的beanDefinition放入到一个Map中（即为IoC容器）
 					this.beanDefinitionMap.put(beanName, beanDefinition);
@@ -911,6 +915,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			}
 			else {
 				// Still in startup registration phase
+				// 仍在启动注册阶段  添加key-value形式的bean定义信息
 				this.beanDefinitionMap.put(beanName, beanDefinition);
 				this.beanDefinitionNames.add(beanName);
 				removeManualSingletonName(beanName);
@@ -918,7 +923,9 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			this.frozenBeanDefinitionNames = null;
 		}
 
+		// 如果已经存在 或者 包含beanName
 		if (existingDefinition != null || containsSingleton(beanName)) {
+			// 重置BeanDefinition
 			resetBeanDefinition(beanName);
 		}
 	}

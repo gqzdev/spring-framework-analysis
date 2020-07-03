@@ -5,20 +5,20 @@
 
 
 	<bean id="user" class="com.gqzdev.ioc.bean.User">
-		<property name="uid" value="2020101"></property>
-		<property name="username" value="甘全中"></property>
-		<property name="pwd" value="***888"></property>
-		<property name="addr" value="china"></property>
+		<property name="uid" value="2020101"/>
+		<property name="username" value="甘全中"/>
+		<property name="pwd" value="***888"/>
+		<property name="addr" value="china"/>
 	</bean>
 
 	<!--通过构造器注入  index一定要和constructor中参数个数相对应-->
 	<bean id="user01" class="com.gqzdev.ioc.bean.User">
-		<constructor-arg index="0" value="2020102"></constructor-arg>
-		<constructor-arg index="1" value="阿中"></constructor-arg>
-		<constructor-arg index="2" value="***"></constructor-arg>
-		<constructor-arg index="3" value="15571398101"></constructor-arg>
-		<constructor-arg index="4" value="中国"></constructor-arg>
+		<constructor-arg index="0" value="2020102"/>
+		<constructor-arg index="1" value="阿中"/>
+		<constructor-arg index="2" value="***"/>
+		<constructor-arg index="3" value="15571398101"/>
+		<constructor-arg index="4" value="中国"/>
 	</bean>
 
-	<bean id="customBeanFactoryPostProcessor" class="com.gqzdev.ioc.postprocessor.CustomBeanFactoryPostProcessor"></bean>
+	<bean id="myBeanFactoryPostProcessor" class="com.gqzdev.ioc.postprocessor.MyBeanFactoryPostProcessor"/>
 </beans>

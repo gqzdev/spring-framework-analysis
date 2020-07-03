@@ -107,6 +107,7 @@ public abstract class BeanUtils {
 			throw new BeanInstantiationException(clazz, "Specified class is an interface");
 		}
 		try {
+			// 实例化 clazz
 			return instantiateClass(clazz.getDeclaredConstructor());
 		}
 		catch (NoSuchMethodException ex) {
@@ -156,7 +157,8 @@ public abstract class BeanUtils {
 		Assert.notNull(ctor, "Constructor must not be null");
 		try {
 			ReflectionUtils.makeAccessible(ctor);
-			// ctor.newInstance(args) 调用构造器的newInstance创建实例  KotlinDelegate.instantiateClass(ctor, args)
+			// ctor.newInstance(args) 调用构造器的newInstance创建实例
+			// KotlinDelegate.instantiateClass(ctor, args)
 			return (KotlinDetector.isKotlinReflectPresent() && KotlinDetector.isKotlinType(ctor.getDeclaringClass()) ?
 					KotlinDelegate.instantiateClass(ctor, args) : ctor.newInstance(args));
 		}

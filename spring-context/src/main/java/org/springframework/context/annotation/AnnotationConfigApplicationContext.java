@@ -89,7 +89,10 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * @param annotatedClasses one or more annotated classes,
 	 * e.g. {@link Configuration @Configuration} classes
 	 */
-	//最常用的构造函数，将涉及到的配置类传递给该构造函数，以实现将相应配置类中的Bean自动注册到容器中
+	/*  Spring3.0后就推荐使用注解的方式进行开发
+	 	最常用的构造函数，将涉及到的配置类传递给该构造函数，
+	 	以实现将相应配置类中的Bean自动注册到容器中
+	 */
 	public AnnotationConfigApplicationContext(Class<?>... annotatedClasses) {
 		//调用父类构造方法
 		this();
@@ -173,14 +176,18 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * @see #scan(String...)
 	 * @see #refresh()
 	 */
-	//为容器注册一个要被处理的注解Bean，
-	// 新注册的Bean，必须手动调用容器的refresh()方法刷新容器，触发容器对新注册的Bean的处理
+	/*
+	   为容器注册一个要被处理的注解Bean，
+	   新注册的Bean，必须手动调用容器的refresh()方法刷新容器，触发容器对新注册的Bean的处理
+	 */
 	@Override
 	public void register(Class<?>... annotatedClasses) {
 		//必须至少指定一个带注释的类
 		Assert.notEmpty(annotatedClasses, "At least one annotated class must be specified");
-		//AnnotationConfigApplicationContext通过调用注解Bean定义读取器reader
-		// 	的register方法向容器注册指定的注解Bean
+		/*
+			AnnotationConfigApplicationContext通过 调用注解Bean定义读取器
+			reader的register方法向容器注册指定的注解Bean
+		 */
 		this.reader.register(annotatedClasses);
 	}
 

@@ -154,6 +154,7 @@ public class AnnotatedBeanDefinitionReader {
 	 */
 	//注册一个注解Bean定义类
 	public void registerBean(Class<?> annotatedClass) {
+		// doRegisterBean 真正进行注册的方法
 		doRegisterBean(annotatedClass, null, null, null);
 	}
 
@@ -225,8 +226,10 @@ public class AnnotatedBeanDefinitionReader {
 	 * factory's {@link BeanDefinition}, e.g. setting a lazy-init or primary flag
 	 * @since 5.0
 	 */
-	//Bean定义读取器(AnnotatedBeanDefinitionReader) 向容器注册  注解Bean定义类
-	//从给定的bean类中注册一个bean，从类声明的注释中派生其元数据。添加bean定义的原信息
+	/*
+		Bean定义读取器(AnnotatedBeanDefinitionReader) 向容器注册  注解Bean定义类
+		从给定的bean类中注册一个bean，从类声明的注释中派生其元数据。添加bean定义的原信息
+	 */
 	<T> void doRegisterBean(Class<T> annotatedClass, @Nullable Supplier<T> instanceSupplier, @Nullable String name,
 			@Nullable Class<? extends Annotation>[] qualifiers, BeanDefinitionCustomizer... definitionCustomizers) {
 

@@ -21,7 +21,7 @@ public class MyFactoryBean implements FactoryBean {
 	@Override
 	public Object getObject() throws Exception {
 		Student student = new Student(2020, "gqzdev", 23, "湖北黄冈");
-		System.out.println("-----可以一些列的操作-----");
+		System.out.println("-----可以进行一系列的操作-----");
 		return student;
 	}
 

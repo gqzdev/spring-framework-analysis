@@ -19,8 +19,10 @@ package org.springframework.beans.factory.config;
 import org.springframework.beans.BeansException;
 import org.springframework.lang.Nullable;
 
-/**允许自定义修改新的bean实例 工厂钩子
- * Factory hook that allows for custom modification of new bean instances,
+/**
+ * 允许自定义修改新的bean实例 工厂钩子
+ * BeanPostProcessor是在spring容器加载了bean的定义文件，并且实例化bean之后执行的。
+ * <p>Factory hook that allows for custom modification of new bean instances,
  * e.g. checking for marker interfaces or wrapping them with proxies.
  *
  * <p>ApplicationContexts can autodetect BeanPostProcessor beans in their
@@ -41,9 +43,24 @@ import org.springframework.lang.Nullable;
  * @see BeanFactoryPostProcessor
  */
 /*
+	BeanPostProcessor是在spring容器加载了bean的定义文件，并且实例化bean之后执行的。
+	BeanPostProcessor的执行顺序是在BeanFactoryPostProcessor之后。
 	这个接口只有两个方法，他允许自定义的去修改spring给我们创建的类。
 	在Bean初始化时处理  有before after
 	AOP就是在这个阶段去实现的
+
+	spring中，有内置的一些BeanPostProcessor实现类，例如：
+	支持@Resource注解的注入
+	org.springframework.context.annotation.CommonAnnotationBeanPostProcessor：
+	支持@Required注解的注入
+	org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor：
+	支持@Autowired注解的注入
+	org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor：
+	支持@PersistenceUnit和@PersistenceContext注解的注入
+	org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor：
+	用来为bean注入ApplicationContext等容器对象
+	org.springframework.context.support.ApplicationContextAwareProcessor：
+
  */
 public interface BeanPostProcessor {
 

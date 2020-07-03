@@ -138,14 +138,41 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
 			// 设置BeanFactory的一些基本信息  序列化id
 			beanFactory.setSerializationId(getId());
-			customizeBeanFactory(beanFactory);
+			customizeBeanFactory(beanFactory); // 自定义两个属性  allowBeanDefinitionOverriding  allowCircularReferences 默认都是true
 			/** 核心步骤loadBeanDefinitions(beanFactory); 加载Bean的定义信息，从XML、注解形式等 解析出bean，并放入BeanDefinitionMap
-			 加载BeanDefinition
-			 不同的方式，选择不同的Reader
-			 1.xml文件   {@link AbstractXmlApplicationContext}AbstractXmlApplicationContext.loadBeanDefinitions
-			 2.注解方式   AnnotationConfigWebApplicationContext
-			 3.GroovyWeb   GroovyWebApplicationContext
-			 4.web环境的xml XmlWebApplicationContext
+			 	加载BeanDefinition
+			 	这个过程会有很多层，一直调用相同的方法名 loadBeanDefinitions 是重载的，参数类型不同
+				 不同的方式，选择不同的Reader
+				 1.xml文件   {@link AbstractXmlApplicationContext}AbstractXmlApplicationContext.loadBeanDefinitions
+				 2.注解方式   AnnotationConfigWebApplicationContext
+				 3.GroovyWeb   GroovyWebApplicationContext
+				 4.web环境的xml XmlWebApplicationContext
+
+			 	调用过程
+			 	loadBeanDefinitions(beanFactory);从BeanFactory加载 bd
+			 		生成读取器后 ，在bdr中设置一些属性 ，Environment环境、资源加载器ResourceLoader、实体处理类EntityResolver
+					初始化bdr，  initBeanDefinitionReader(beanDefinitionReader);
+			 		loadBeanDefinitions(beanDefinitionReader);
+
+						reader.loadBeanDefinitions(configResources);
+						reader.loadBeanDefinitions(configLocations);
+							加载配置文件，返回配置文件的个数
+							loadBeanDefinitions(location);
+			 					获取资源 Resource[] resources = ((ResourcePatternResolver) resourceLoader).getResources(location);
+			 					loadBeanDefinitions(resources);
+			 						遍历加载resource
+			 						loadBeanDefinitions(resource);
+			 							从指定的XML文件加载bean定义。
+			 							loadBeanDefinitions(new EncodedResource(resource));
+			 								doLoadBeanDefinitions(inputSource, encodedResource.getResource());
+			 									将inputSource加载成Document
+			 									doLoadDocument(inputSource, resource); // 主要是验证 DTD XSD
+												注册包含在给定DOM文档中的bean定义。
+			 									registerBeanDefinitions(doc, resource);
+			 										创建BeanDefinitionDocumentReader，注册BeanDefinition
+			 										documentReader.registerBeanDefinitions(doc, createReaderContext(resource));
+			 											doRegisterBeanDefinitions(doc.getDocumentElement());
+			 											在给定的根元素<beans/>中注册每个bean定义
 			 */
 			loadBeanDefinitions(beanFactory);
 			synchronized (this.beanFactoryMonitor) {

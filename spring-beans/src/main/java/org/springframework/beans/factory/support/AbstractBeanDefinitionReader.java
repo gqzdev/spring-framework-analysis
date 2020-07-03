@@ -237,6 +237,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 		}
 		else {
 			// Can only load single resources by absolute URL.
+			// 只能通过绝对URL加载单一资源。
 			Resource resource = resourceLoader.getResource(location);
 			int count = loadBeanDefinitions(resource);
 			if (actualResources != null) {
@@ -248,6 +249,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 			return count;
 		}
 	}
+
 	// 加载配置文件 ***.xml
 	@Override
 	public int loadBeanDefinitions(String... locations) throws BeanDefinitionStoreException {

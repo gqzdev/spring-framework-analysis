@@ -503,7 +503,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			2.实例化Bean
 			finishBeanFactoryInitialization(beanFactory);
 
-	 	<p>refresh()方法中有13个方法
+	 	<p>refresh()方法中有12个方法
 	 	<p>		1. prepareRefresh();
 	 	<p>		2. obtainFreshBeanFactory();
 	 	<p>		3. prepareBeanFactory(beanFactory);
@@ -515,8 +515,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 	<p>		9. onRefresh();
 	 	<p>		10.registerListeners();
 	 	<p>		11.finishBeanFactoryInitialization(beanFactory);
-	 	<p>		12.destroyBeans();
-	 	<p>		13.cancelRefresh(ex);
+	 	<p>		12.finishRefresh();
 	 */
 	@Override
 	public void refresh() throws BeansException, IllegalStateException {
@@ -542,18 +541,21 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 			try {
 				// Allows post-processing of the bean factory in context subclasses.
-				// 允许在上下文 子类中对bean工厂进行后处理  由子类去实现； 主要是自定义去使用
+				// 允许在上下文 的子类中对bean工厂进行后处理  由子类去实现； 主要是自定义去使用
 				postProcessBeanFactory(beanFactory);
 
 				// Invoke factory processors registered as beans in the context.
 				//【BeanFactoryPostProcessors】调用工厂后置处理器  注册bean   这个过程使用到代理
-				//BeanFactoryPostProcessor 可以 用于容器初始化还没有实例化Bean之前读取Bean的信息，并作出一些修改。
-				//例如修改Bean的属性，修改Bean的scope等
+				//BeanFactoryPostProcessor 可以 用于容器完成初始化 （）
+				// 还没有实例化Bean之前读取Bean的信息，并作出一些修改。
+				// 例如修改Bean的属性，修改Bean的scope等
 				invokeBeanFactoryPostProcessors(beanFactory);
 
+				//https://blog.csdn.net/caihaijiang/article/details/35552859
 				// Register bean processors that intercept bean creation.
 				// 【BeanPostProcessors】 注册BeanPostProcessor
-				// BeanPostProcessor是Bean的后置处理器，在Bean的初始化方法[InitializingBean 以及init-method]前后执行。
+				// BeanPostProcessor是Bean的后置处理器，
+				// 在Bean的初始化方法[InitializingBean 以及init-method]前，后执行。
 				registerBeanPostProcessors(beanFactory);
 
 				// Initialize message source for this context.
@@ -607,8 +609,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		}
 	}
 
-	/** 准备此上下文以进行刷新，设置其启动日期和活动标记以及执行属性源的任何初始化
-	 * Prepare this context for refreshing, setting its startup date and
+	/**
+	 * 准备此上下文以进行刷新，设置其启动日期和活动标记以及执行属性源的任何初始化
+	 * <p>Prepare this context for refreshing, setting its startup date and
 	 * active flag as well as performing any initialization of property sources.
 	 */
 	protected void prepareRefresh() {
@@ -670,17 +673,22 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	}
 
 	/**
-	 * Configure the factory's standard context characteristics,
+	 * 配置工厂的标准上下文特征，例如上下文的类加载器和后处理器。
+	 * <p>Configure the factory's standard context characteristics,
 	 * such as the context's ClassLoader and post-processors.
 	 * @param beanFactory the BeanFactory to configure
 	 */
 	protected void prepareBeanFactory(ConfigurableListableBeanFactory beanFactory) {
 		// Tell the internal bean factory to use the context's class loader etc.
+		// 告诉内部bean工厂使用上下文的类装入器等。
 		beanFactory.setBeanClassLoader(getClassLoader());
+		// 设置Spring Expression Language、 Spring表达式解析器
 		beanFactory.setBeanExpressionResolver(new StandardBeanExpressionResolver(beanFactory.getBeanClassLoader()));
+		// 添加属性编辑器
 		beanFactory.addPropertyEditorRegistrar(new ResourceEditorRegistrar(this, getEnvironment()));
 
 		// Configure the bean factory with context callbacks.
+		// 添加BeanFactory后置处理器 ， 忽略依赖接口 ****Aware
 		beanFactory.addBeanPostProcessor(new ApplicationContextAwareProcessor(this));
 		beanFactory.ignoreDependencyInterface(EnvironmentAware.class);
 		beanFactory.ignoreDependencyInterface(EmbeddedValueResolverAware.class);

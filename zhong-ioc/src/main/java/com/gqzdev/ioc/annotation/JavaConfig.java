@@ -1,4 +1,4 @@
-package com.gqzdev.ioc.config;
+package com.gqzdev.ioc.annotation;
 
 
 import com.gqzdev.ioc.bean.User;
@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
  * @Version
  **/
 @Configuration
-@ComponentScan
+@ComponentScan("com.gqzdev.ioc")
 public class JavaConfig {
 
 	@Bean
