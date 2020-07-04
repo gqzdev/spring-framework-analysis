@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan("com.gqzdev.ioc")
 public class JavaConfig {
 
-	@Bean
+	@Bean(initMethod = "initMethod")
 	public User user(){
 		return new User(101,"ganquanzhong","pwd","13995978321","china");
 	}

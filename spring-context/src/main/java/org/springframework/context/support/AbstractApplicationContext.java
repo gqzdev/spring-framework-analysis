@@ -520,7 +520,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	@Override
 	public void refresh() throws BeansException, IllegalStateException {
 		synchronized (this.startupShutdownMonitor) {
-			// Prepare this context for refreshing.  准备刷新 记录开始时间  设置几个标志位  验证环境属性
+			// Prepare this context for refreshing.
+			// 准备刷新 记录开始时间  设置几个标志位  验证环境属性
 			prepareRefresh();
 
 			// Tell the subclass to refresh the internal bean factory.
@@ -574,6 +575,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				// 注册监听器
 				registerListeners();
 
+				/* 第11步
+					对于非抽象类、非延迟初始化的单例bean，
+					在spring容器启动的时候调用getBean方法来实例化bean，并进行相关初始化工作，
+					getBean方法最终调用AbstractAutowireCapableBeanFactory.doCreateBean方法
+				 */
 				// 在创建BeanFactory的过程中，BeanDefinition注册到了BeanFactory中的一个ConCurretHashMap对象中
 				// 以BeanName为key，BeanDefinition为value ； 实例化所有剩余的（非延迟初始化）单例。
 				// Instantiate all remaining (non-lazy-init) singletons.
@@ -737,7 +743,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	}
 
 	/**
-	 * Instantiate and invoke all registered BeanFactoryPostProcessor beans,
+	 * <p>通过beanFactory.getBeanNamesForType(BeanFactoryPostProcessor.class, true, false)，
+	 * <p>获取spring配置文件中定义的所有实现BeanFactoryPostProcessor接口的bean，然后根据优先级进行排序，
+	 * <p>之后对于每个BeanFactoryPostProcessor，调用postProcessBeanFactory方法。
+	 *
+	 * <p>Instantiate and invoke all registered BeanFactoryPostProcessor beans,
 	 * respecting explicit order if given.
 	 * <p>Must be called before singleton instantiation.
 	 */

@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-	<bean id="user" class="com.gqzdev.ioc.bean.User">
+	<bean id="user" class="com.gqzdev.ioc.bean.User" init-method="initMethod">
 		<property name="uid" value="2020101"/>
 		<property name="username" value="甘全中"/>
 		<property name="pwd" value="***888"/>

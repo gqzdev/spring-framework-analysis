@@ -31,6 +31,10 @@ package org.springframework.beans.factory;
  * @see org.springframework.beans.factory.config.BeanDefinition#getPropertyValues()
  * @see org.springframework.beans.factory.support.AbstractBeanDefinition#getInitMethodName()
  */
+/*
+	InitializingBean接口为bean提供了初始化方法的方式，
+	它只包括afterPropertiesSet方法，凡是继承该接口的类，在初始化bean的时候会执行该方法。
+ */
 public interface InitializingBean {
 
 	/**

@@ -1,5 +1,7 @@
 package com.gqzdev.ioc.bean;
 
+import org.springframework.beans.factory.InitializingBean;
+
 /**
  * @ClassName User
  * @Description
@@ -7,7 +9,7 @@ package com.gqzdev.ioc.bean;
  * @Date2019/12/3 22:38
  * @Version
  **/
-public class User {
+public class User implements InitializingBean {
 	private int uid;
 	private String username;
 	private String pwd;
@@ -81,4 +83,15 @@ public class User {
 				'}';
 	}
 
+	/**
+	 * User对象 的初始化方法
+	 */
+	public void initMethod(){
+		System.out.println("【initMethod】-在bean被spring容器初始化时，会执行initMethod属性指定的方法！");
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		System.out.println("【afterPropertiesSet】-实现InitializingBean接口的afterPropertiesSet方法，在bean初始化会自动调用该方法！");
+	}
 }

@@ -797,8 +797,10 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		// Trigger initialization of all non-lazy singleton beans...
 		for (String beanName : beanNames) {
 			RootBeanDefinition bd = getMergedLocalBeanDefinition(beanName);
-			if (!bd.isAbstract() && bd.isSingleton() && !bd.isLazyInit()) { //判断bd 抽象 单例 懒加载
-				if (isFactoryBean(beanName)) { //判断是不是FactoryBean
+			//判断bd  非抽象、单例、非懒加载
+			if (!bd.isAbstract() && bd.isSingleton() && !bd.isLazyInit()) {
+				//判断是不是FactoryBean
+				if (isFactoryBean(beanName)) {
 					Object bean = getBean(FACTORY_BEAN_PREFIX + beanName);
 					if (bean instanceof FactoryBean) {
 						final FactoryBean<?> factory = (FactoryBean<?>) bean;
@@ -818,7 +820,11 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 					}
 				}
 				else {
-					//getBean  真正做事的是doGetBean
+					/*
+						对于非抽象类、非延迟初始化的单例bean，
+						在spring容器启动的时候调用getBean方法来实例化bean，并进行相关初始化工作，
+						getBean方法最终调用AbstractAutowireCapableBeanFactory.doCreateBean方法
+					 */
 					getBean(beanName);
 				}
 			}

@@ -77,6 +77,8 @@ final class PostProcessorRegistrationDelegate {
 				未初始化，让bean工厂后处理器应用到它们!
 				BeanDefinitionRegistryPostProcessors之间的分离实现
 				排好序，点好，等等。
+
+				获取spring配置文件中定义的所有实现BeanFactoryPostProcessor接口的bean，然后根据优先级进行排序
 			 */
 			List<BeanDefinitionRegistryPostProcessor> currentRegistryProcessors = new ArrayList<>();
 
