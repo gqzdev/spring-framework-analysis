@@ -514,7 +514,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			instanceWrapper = this.factoryBeanInstanceCache.remove(beanName);
 		}
 		if (instanceWrapper == null) {
-			//用来创建bean实例 （这个时候执行bean的构造方法）
+			//用来创建bean实例 （这个时候执行bean的构造方法）;
+			// 这步执行，就完成了bean的实例化操作
 			instanceWrapper = createBeanInstance(beanName, mbd, args);
 		}
 		final Object bean = instanceWrapper.getWrappedInstance();
@@ -546,17 +547,19 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				logger.trace("Eagerly caching bean '" + beanName +
 						"' to allow for resolving potential circular references");
 			}
+			//上面完成bean的实例化， 向三级缓存中放入一个实例化对象（匿名处理类）
 			addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, mbd, bean));
 		}
 
 		/*
-			上面完成bean的实例化，
+			初始化bean实例
 			下面调用populateBean方法，对bean进行填充，注入相关依赖
 		 */
 		//Initialize the bean instance.
 		Object exposedObject = bean;
 		try {
-			//填充Bean，该方法就是 发生依赖注入的地方
+			// 【填充】
+			// 填充Bean，该方法就是 发生依赖注入的地方
 			populateBean(beanName, mbd, instanceWrapper);
 			// 再调用方法initializeBean，进行相关初始化工作
 			exposedObject = initializeBean(beanName, exposedObject, mbd);
@@ -907,6 +910,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * @param mbd the merged bean definition for the bean
 	 * @param bean the raw bean instance
 	 * @return the object to expose as bean reference
+	 */
+	/*
+		获取对指定bean的早期访问的引用，
+		通常用于解析循环引用。
 	 */
 	protected Object getEarlyBeanReference(String beanName, RootBeanDefinition mbd, Object bean) {
 		Object exposedObject = bean;

@@ -1,0 +1,51 @@
+circulardependency
+
+    在A中引用B，在B中又引用A。
+
+实例化，调用构造方法
+
+三级缓存解决 三个map对象
+1. singletonObjects
+2. earlySingletonObjects
+3. singletonFactories
+
+
+实例化和初始化分开操作
+
+将实例化好的对象提前暴露出去，可以很轻松的拿到当前对象的引用
+    只不过当前对象不是一个完整的状态（实例化完成但不是初始化完成）
+
+
+问题：
+    1. 如果只有一级缓存，能不能解决循环依赖问题？  》 一级缓存是用来方便获取对象的
+        放对象都是，半成品（只完成实例化，没有完成初始化）
+        如果是在多线程的环境中，大家都从一级缓存中获取数据，有可能获取到的是半成品，属性值都是ull
+
+    2. 如果只有二级缓存，能不能解决循环依赖问题？
+        一级缓存中放，成品
+        二级缓存中放，半成品；
+        能解决一级缓存中存在的问题！
+
+        但，为什么还要使用三级缓存！！ 添加三级缓存的意义在哪里？
+            如果没有三级缓存，刚开始放置的是实例化好的对象，
+                然后缓存中有了，后面如果进行代理处理，生成一个代理类。
+                导致可能使用的不是同一个对象！
+                三级缓存中存放的是FactoryObject类型 (匿名内部类 最终是用来生成一个统一的对象)
+            如果创建的是一个普通的类，没问题。如果创建的是一个代理类，
+
+        /*
+            获取对指定bean的早期访问的引用，
+            通常用于解析循环引用。
+         */
+        protected Object getEarlyBeanReference(String beanName, RootBeanDefinition mbd, Object bean) {
+            Object exposedObject = bean;
+            if (!mbd.isSynthetic() && hasInstantiationAwareBeanPostProcessors()) {
+                for (BeanPostProcessor bp : getBeanPostProcessors()) {
+                    if (bp instanceof SmartInstantiationAwareBeanPostProcessor) {
+                        SmartInstantiationAwareBeanPostProcessor ibp = (SmartInstantiationAwareBeanPostProcessor) bp;
+                        exposedObject = ibp.getEarlyBeanReference(exposedObject, beanName);
+                    }
+                }
+            }
+            return exposedObject;
+        }

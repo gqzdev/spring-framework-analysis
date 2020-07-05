@@ -86,6 +86,10 @@ import org.springframework.util.StringValueResolver;
  * @see PropertyPlaceholderConfigurer
  * @see org.springframework.context.support.PropertySourcesPlaceholderConfigurer
  */
+/*
+	用于解析bean定义属性值中的占位符的属性资源配置器的抽象基类。
+	实现从属性文件或其他属性源中提取值到bean定义中。
+ */
 public abstract class PlaceholderConfigurerSupport extends PropertyResourceConfigurer
 		implements BeanNameAware, BeanFactoryAware {
 
