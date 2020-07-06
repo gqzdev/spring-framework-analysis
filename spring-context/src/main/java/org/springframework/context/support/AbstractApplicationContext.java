@@ -636,10 +636,12 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		}
 
 		// Initialize any placeholder property sources in the context environment.
+		// 初始化一些属性设置;子类自定义个性化的属性设置方法；
 		initPropertySources();
 
 		// Validate that all properties marked as required are resolvable:
 		// see ConfigurablePropertyResolver#setRequiredProperties
+		// 检验属性的合法等
 		getEnvironment().validateRequiredProperties();
 
 		// Store pre-refresh ApplicationListeners...
@@ -654,6 +656,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 		// Allow for the collection of early ApplicationEvents,
 		// to be published once the multicaster is available...
+		// 保存容器中的一些早期的事件；
 		this.earlyApplicationEvents = new LinkedHashSet<>();
 	}
 
@@ -674,7 +677,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 */
 	protected ConfigurableListableBeanFactory obtainFreshBeanFactory() {
 		// refreshBeanFactory 核心方法
-		refreshBeanFactory(); //就是获取 refreshBeanFactory 方法所创建的 BeanFactory
+		// 就是获取 refreshBeanFactory 方法所创建的 BeanFactory
+		refreshBeanFactory();
+		// 将创建的BeanFactory【DefaultListableBeanFactory类型】返回
 		return getBeanFactory();
 	}
 

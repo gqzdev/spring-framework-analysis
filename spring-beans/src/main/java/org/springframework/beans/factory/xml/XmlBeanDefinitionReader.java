@@ -295,6 +295,9 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 */
 	@Override
 	public int loadBeanDefinitions(Resource resource) throws BeanDefinitionStoreException {
+		//构造出 Resource 对象之后，接下来还会把 Resource 对象转为 EncodedResource，
+		// 这里会对资源进行编码处理，编码主要体现在 getReader 方法上，
+		// 在获取 Reader 对象时，如果有编码，则给出编码格式：
 		return loadBeanDefinitions(new EncodedResource(resource));
 	}
 
@@ -514,7 +517,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		int countBefore = getRegistry().getBeanDefinitionCount();
 		//doRegisterBeanDefinitions
 		documentReader.registerBeanDefinitions(doc, createReaderContext(resource));
-		return getRegistry().getBeanDefinitionCount() - countBefore;
+		return getRegistry().getBeanDefinitionCount() - countBefore; // 返回注册 BeanDefinition的个数
 	}
 
 	/**

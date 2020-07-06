@@ -76,13 +76,10 @@ import java.util.stream.Stream;
  */
 /*
  * XmlBeanFactory 继承自 DefaultListableBeanFactory ，
- * 而DefaultListableBeanFactory 是整个bean
- * 加载的核心部分，是Spring 注册及加载b巳an 的默认实现，而对于Xm!BeanFactory 与
- * DefaultListableBeanFactory 不同的地方其实是在XmlBeanFactory 中使用了自定义的XML 读取器
- * XmlBeanDefinitionReader ，实现了个性化的BeanDefinitionReader读取，DefaultListableBeanFacto1y
- * 继承了AbstractAutowireCapableBeanFactory 并实现了ConfigurableListableBeanFacto可以及
- *  BeanDefinitionRegistry 接口
- *
+ * 而DefaultListableBeanFactory 是整个bean加载的核心部分，是Spring 注册及加载bean 的默认实现，
+ * 	而对于XmBeanFactory 与 DefaultListableBeanFactory 不同的地方
+ * 		其实是在XmlBeanFactory 中使用了自定义的XML 读取器 XmlBeanDefinitionReader ，实现了个性化的BeanDefinitionReader读取，
+ * 		DefaultListableBeanFactory 继承了AbstractAutowireCapableBeanFactory 并实现了ConfigurableListableBeanFactory及 BeanDefinitionRegistry 接口
  */
 @SuppressWarnings("serial")
 public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory

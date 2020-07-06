@@ -6,7 +6,7 @@
 
 	<bean id="user" class="com.gqzdev.ioc.bean.User" init-method="initMethod">
 		<property name="uid" value="2020101"/>
-		<property name="username" value="甘全中"/>
+		<property name="username" value="ganquanzhong"/>
 		<property name="pwd" value="***888"/>
 		<property name="addr" value="china"/>
 	</bean>

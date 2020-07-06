@@ -87,11 +87,11 @@ public class User implements InitializingBean {
 	 * User对象 的初始化方法
 	 */
 	public void initMethod(){
-		System.out.println("【initMethod】-在bean被spring容器初始化时，会执行initMethod属性指定的方法！");
+		System.out.println("【user-initMethod】-在bean被spring容器初始化时，会执行initMethod属性指定的方法！");
 	}
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		System.out.println("【afterPropertiesSet】-实现InitializingBean接口的afterPropertiesSet方法，在bean初始化会自动调用该方法！");
+		System.out.println("【user-afterPropertiesSet】-实现InitializingBean接口的afterPropertiesSet方法，在bean初始化会自动调用该方法！");
 	}
 }

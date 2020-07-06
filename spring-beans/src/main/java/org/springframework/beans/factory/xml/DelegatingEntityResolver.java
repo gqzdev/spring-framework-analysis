@@ -16,14 +16,13 @@
 
 package org.springframework.beans.factory.xml;
 
-import java.io.IOException;
-
+import org.springframework.lang.Nullable;
+import org.springframework.util.Assert;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import org.springframework.lang.Nullable;
-import org.springframework.util.Assert;
+import java.io.IOException;
 
 /**
  * {@link EntityResolver} implementation that delegates to a {@link BeansDtdResolver}
@@ -36,8 +35,21 @@ import org.springframework.util.Assert;
  * @see BeansDtdResolver
  * @see PluggableSchemaResolver
  */
+
+/*
+	JDK中的 EntityResolver 就是用来处理 XML 验证的；
+	在 Spring 中，EntityResolver 的实现类是 DelegatingEntityResolver：
+
+	首先通过两种不同的后缀来区分不同的约束。
+		.dtd格式和.xsd格式
+
+	然后定义了 dtdResolver 和 schemaResolver 两个不同的变量，对应的类型分别是 BeansDtdResolver 和 PluggableSchemaResolver，也就是 dtd 和 schema 的约束验证分别由这两个类来处理。
+	在 resolveEntity 方法中，根据解析出来不同的后缀，分别交由不同的 EntityResolver 来处理。resolveEntity 解析中有两个参数，如果是 dtd 解析的话，publicId 是有值的，如果是 schema 解析，publicId 为 null，而 systemId 则始终指向具体的约束文件。
+
+ */
 public class DelegatingEntityResolver implements EntityResolver {
 
+	// 首先通过两种不同的后缀来区分不同的约束。
 	/** Suffix for DTD files. */
 	public static final String DTD_SUFFIX = ".dtd";
 
@@ -76,7 +88,14 @@ public class DelegatingEntityResolver implements EntityResolver {
 		this.schemaResolver = schemaResolver;
 	}
 
-
+	 /**
+	  * resolveEntity 解析中有两个参数，
+	  * 如果是 dtd 解析的话，publicId 是有值的，
+	  * 如果是 schema 解析，publicId 为 null，
+	  * 而 systemId 则始终指向具体的约束文件。
+	  * @Author: ganquanzhong
+	  * @Date:  2020/7/6 16:06
+	  */
 	@Override
 	@Nullable
 	public InputSource resolveEntity(@Nullable String publicId, @Nullable String systemId)

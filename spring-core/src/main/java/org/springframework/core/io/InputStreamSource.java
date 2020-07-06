@@ -38,6 +38,10 @@ import java.io.InputStream;
  * @see InputStreamResource
  * @see ByteArrayResource
  */
+/*
+	InputStreamSource 类只提供了一个 getInputStream 方法，该方法返回一个 InputStream，
+	也就是说，InputStreamSource 会将传入的 File 等资源，封装成一个 InputStream 再重新返回。
+ */
 public interface InputStreamSource {
 
 	/**

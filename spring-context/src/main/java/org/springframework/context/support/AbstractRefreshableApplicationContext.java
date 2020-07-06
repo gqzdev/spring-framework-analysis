@@ -153,8 +153,8 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			 		生成读取器后 ，在bdr中设置一些属性 ，Environment环境、资源加载器ResourceLoader、实体处理类EntityResolver
 					初始化bdr，  initBeanDefinitionReader(beanDefinitionReader);
 			 		loadBeanDefinitions(beanDefinitionReader);
-
 						reader.loadBeanDefinitions(configResources);
+			 				加载配置资源
 						reader.loadBeanDefinitions(configLocations);
 							加载配置文件，返回配置文件的个数
 							loadBeanDefinitions(location);
