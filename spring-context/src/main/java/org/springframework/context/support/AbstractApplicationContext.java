@@ -519,6 +519,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 */
 	@Override
 	public void refresh() throws BeansException, IllegalStateException {
+		// 同步，线程安全； 防止 fresh还没结束  就又进入改方法 导致容器初始化错乱
 		synchronized (this.startupShutdownMonitor) {
 			// Prepare this context for refreshing.
 			// 准备刷新 记录开始时间  设置几个标志位  验证环境属性
@@ -527,7 +528,10 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			// Tell the subclass to refresh the internal bean factory.
 			// 告诉子类刷新内部bean工厂  创建BeanFactory  并且获取BeanDefinition的定义信息
 			/**
-			 * 	1. refreshBeanFactory(); 核心方法
+			 *	obtainFreshBeanFactory();方法
+			 *		解析为一个个beanDefinition 放在我们beanDefinitionMap中管理起来
+			 *
+			 *  1. refreshBeanFactory(); 核心方法
 			 * 		AbstractRefreshableApplicationContext#refreshBeanFactory()
 			 * 		创建DefaultListableBeanFactory 并设置属性
 			 * 		加载BeanFactory； 根据不同的类型，调用不同的方法
@@ -577,7 +581,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 				/* 第11步
 					对于非抽象类、非延迟初始化的单例bean，
-					在spring容器启动的时候调用getBean方法来实例化bean，并进行相关初始化工作，
+					在spring容器启动的时候调用getBean方法来实例化bean， 并进行相关初始化工作，
 					getBean方法最终调用AbstractAutowireCapableBeanFactory.doCreateBean方法
 				 */
 				// 在创建BeanFactory的过程中，BeanDefinition注册到了BeanFactory中的一个ConCurretHashMap对象中

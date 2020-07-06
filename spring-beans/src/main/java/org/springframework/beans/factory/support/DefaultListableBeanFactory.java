@@ -874,9 +874,13 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		if (existingDefinition != null) {
 			// beanDefinitionMap 中没有 beanDefinition
 			if (!isAllowBeanDefinitionOverriding()) {
+				// 如果已经创建BeanDefinition 并且【allowBeanDefinitionOverriding默认是true】 不是可重复出现的bean ， 则报错 抛出异常信息
 				throw new BeanDefinitionOverrideException(beanName, beanDefinition, existingDefinition);
 			}
 			else if (existingDefinition.getRole() < beanDefinition.getRole()) {
+				// 0 ROLE_APPLICATION表示这个 Bean 是用户自己定义的 Bean；
+				// 1 ROLE_SUPPORT 表示这个 Bean 是某些复杂配置的支撑部分；
+				// 2 ROLE_INFRASTRUCTURE 表示这是一个 Spring 内部的 Bean
 				// e.g. was ROLE_APPLICATION, now overriding with ROLE_SUPPORT or ROLE_INFRASTRUCTURE
 				if (logger.isInfoEnabled()) {
 					logger.info("Overriding user-defined bean definition for bean '" + beanName +

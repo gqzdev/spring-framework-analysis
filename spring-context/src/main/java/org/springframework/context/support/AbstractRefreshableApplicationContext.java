@@ -138,7 +138,8 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
 			// 设置BeanFactory的一些基本信息  序列化id
 			beanFactory.setSerializationId(getId());
-			customizeBeanFactory(beanFactory); // 自定义两个属性  allowBeanDefinitionOverriding  allowCircularReferences 默认都是true
+			// 自定义两个属性  allowBeanDefinitionOverriding 允许BeanDefinition覆盖  allowCircularReferences 允许循环依赖 默认都是true
+			customizeBeanFactory(beanFactory);
 			/** 核心步骤loadBeanDefinitions(beanFactory); 加载Bean的定义信息，从XML、注解形式等 解析出bean，并放入BeanDefinitionMap
 			 	加载BeanDefinition
 			 	这个过程会有很多层，一直调用相同的方法名 loadBeanDefinitions 是重载的，参数类型不同
@@ -266,9 +267,23 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 * @see DefaultListableBeanFactory#setAllowEagerClassLoading
 	 */
 	protected void customizeBeanFactory(DefaultListableBeanFactory beanFactory) {
+		/*
+			设置自定义的allowBeanDefinitionOverriding
+		 	是否允许bean定义的覆盖
+			BeanDefinition 的覆盖问题大家也许会碰到，
+			就是在配置文件中定义 bean 时使用了相同的 id 或 name
+			默认情况下，allowBeanDefinitionOverriding 属性为 null，
+			如果在同一配置文件中重复了，会抛错，但是如果不是同一配置文件中，会发生覆盖。
+		 */
 		if (this.allowBeanDefinitionOverriding != null) {
 			beanFactory.setAllowBeanDefinitionOverriding(this.allowBeanDefinitionOverriding);
 		}
+		/*
+			设置自定义的allowCircularReferences
+			是否允许bean 间的循环依赖
+			A 依赖 B，而 B 依赖 A。或 A 依赖 B，B 依赖 C，而 C 依赖 A
+			默认情况下，Spring 允许循环依赖，当然如果你在 A 的构造方法中依赖 B，在 B 的构造方法中依赖 A 是不行的。
+		 */
 		if (this.allowCircularReferences != null) {
 			beanFactory.setAllowCircularReferences(this.allowCircularReferences);
 		}

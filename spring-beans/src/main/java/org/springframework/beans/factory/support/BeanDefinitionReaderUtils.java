@@ -162,6 +162,7 @@ public abstract class BeanDefinitionReaderUtils {
 			throws BeanDefinitionStoreException {
 
 		// Register bean definition under primary name.
+		//拿到对应的beanName 就是我们前面定义的id的名字  <bean id="user" 。。。> beanName就是这里的user
 		String beanName = definitionHolder.getBeanName();
 		// 注册BeanDefinition
 		registry.registerBeanDefinition(beanName, definitionHolder.getBeanDefinition());

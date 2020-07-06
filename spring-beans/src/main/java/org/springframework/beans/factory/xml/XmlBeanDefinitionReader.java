@@ -314,7 +314,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		if (logger.isTraceEnabled()) {
 			logger.trace("Loading XML bean definitions from " + encodedResource);
 		}
-
+		// 用一个 ThreadLocal 来存放所有的配置文件资源
 		Set<EncodedResource> currentResources = this.resourcesCurrentlyBeingLoaded.get();
 		if (currentResources == null) {
 			currentResources = new HashSet<>(4);
@@ -515,7 +515,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		// 创建BeanDefinitionDocumentReader bean定义信息读取器
 		BeanDefinitionDocumentReader documentReader = createBeanDefinitionDocumentReader();
 		int countBefore = getRegistry().getBeanDefinitionCount();
-		//doRegisterBeanDefinitions
+		// 注册BeanDefinition的方法 doRegisterBeanDefinitions
 		documentReader.registerBeanDefinitions(doc, createReaderContext(resource));
 		return getRegistry().getBeanDefinitionCount() - countBefore; // 返回注册 BeanDefinition的个数
 	}
