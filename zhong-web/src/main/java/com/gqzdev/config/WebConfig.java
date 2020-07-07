@@ -1,18 +1,16 @@
-package com.gqz.config;
+package com.gqzdev.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * @ClassName WebConfig
- * @Description
- * @Author ganquanzhong
- * @Date2020/4/6 0:25
- * @Version
- **/
 
+/**
+ * description: 配置类WebConfig
+ * @Author：ganquanzhong
+ * @Date： 2020/7/7 23:00
+ */
 @Configuration
-@ComponentScan("com.gqz")
+@ComponentScan("com.gqzdev")
 public class WebConfig  {
 
 }

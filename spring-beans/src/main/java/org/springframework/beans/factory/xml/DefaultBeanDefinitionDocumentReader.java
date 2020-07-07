@@ -345,6 +345,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	protected void processBeanDefinition(Element ele, BeanDefinitionParserDelegate delegate) {
 		//  xml节点信息转化为BeanDefinitionHolder对象
 		/*
+			解析BeanDefinition中的属性信息，class、parent、bean元素下面的meta、lookup-method、replace-method 等等
 			首先委托BeanDefinitionDelegate类的parseBeanDefinitionElement方法进行元素解析，
 			返回BeanDefinitionHolder类型的实例dbHolder ， 经过这个方法后，bdHolder 实例已经包含我
 			们配置文件中配置的各种属性了，例如class 、name、id 、alias 之类的属性。

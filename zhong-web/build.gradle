@@ -17,7 +17,7 @@ dependencies {
     compile(project(":spring-context"))
     compile(project(":spring-aop"))
     compile(project(":spring-web"))
-//    添加spring-test
+    // 添加spring-test
     compile(project(":spring-test"))
 
     testCompile group: 'junit', name: 'junit', version: '4.12'

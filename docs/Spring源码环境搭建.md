@@ -133,7 +133,7 @@ maven { url "http://maven.aliyun.com/nexus/content/groups/public/"}
 	新建User.java
 
 ```java
-package com.gqz.springtest;
+package com.gqzdev.springtest;
 
 /**
  * @ClassName: User
@@ -170,7 +170,7 @@ public class User {
 ```
 新建`JavaConfig.java` &emsp;&emsp;(使用注解的方式声明bean)
 ```java
-package com.gqz.springtest;
+package com.gqzdev.springtest;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -195,7 +195,7 @@ public class JavaConfig {
 ```
 最后写一个测试类`Main.java`
 ```java
-package com.gqz.springtest;
+package com.gqzdev.springtest;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

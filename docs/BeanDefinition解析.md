@@ -8,7 +8,7 @@ replaced-method 不但可以动态地替换返回实体bean ，而且还能动�
 1. 在changeMe中完成某个业务逻辑。
 
   ```java
-  package com.gqzdev.ioc.parsebeandefinition.parsereplacedmethod;
+  package com.gqzdev.ioc.parsebeandefinition.placedmethod;
   
   /**
    * @ClassName: TestChangeMethod
@@ -29,7 +29,7 @@ replaced-method 不但可以动态地替换返回实体bean ，而且还能动�
 2. 在运营一段时间后需要改变原有的业务逻辑。
 
 ```java
-package com.gqzdev.ioc.parsebeandefinition.parsereplacedmethod;
+package com.gqzdev.ioc.parsebeandefinition.placedmethod;
 
 import org.springframework.beans.factory.support.MethodReplacer;
 import java.lang.reflect.Method;

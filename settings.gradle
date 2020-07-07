@@ -32,6 +32,6 @@ rootProject.children.each {project ->
 
 include 'spring-gqzdev'
 include 'zhong-ioc'
-include 'zhong-dev'
+include 'zhong-web'
 include 'zhong-analysis'
 

@@ -404,7 +404,7 @@ public class BeanDefinitionParserDelegate {
 		}
 
 		//  parseBeanDefinitionElement(ele, beanName, containingBean);核心方法
-		//  对bean对应的节点进行属性设置 得到xml中全类名
+		//  对bean对应的节点进行属性【class、parent、bean元素下面的meta、lookup-method、replace-method 等等】解析
 		AbstractBeanDefinition beanDefinition = parseBeanDefinitionElement(ele, beanName, containingBean);
 		if (beanDefinition != null) {
 			if (!StringUtils.hasText(beanName)) {

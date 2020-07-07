@@ -1343,7 +1343,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 */
 	protected void checkMergedBeanDefinition(RootBeanDefinition mbd, String beanName, @Nullable Object[] args)
 			throws BeanDefinitionStoreException {
-
+		// 检查BeanDefinition中bean是否是abstract，抛出异常
 		if (mbd.isAbstract()) {
 			throw new BeanIsAbstractException(beanName);
 		}

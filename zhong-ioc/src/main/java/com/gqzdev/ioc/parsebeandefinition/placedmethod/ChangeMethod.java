@@ -1,4 +1,4 @@
-package com.gqzdev.ioc.parsebeandefinition.parsereplacedmethod;
+package com.gqzdev.ioc.parsebeandefinition.placedmethod;
 
 /**
  * @ClassName: TestChangeMethod

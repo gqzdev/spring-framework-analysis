@@ -3,14 +3,25 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="changeMethod" class="com.gqzdev.ioc.parsebeandefinition.parsereplacedmethod.ChangeMethod" >
+	<!--测试lookup-method ，获取器注入-->
+	<!--
+		LoudSpeak是抽象类，通过其方法返回对象
+	-->
+	<bean id="loudSpeaker" class="com.gqzdev.ioc.parsebeandefinition.lookupmethod.LoudSpeaker">
+		<lookup-method name="getUser" bean="student"/>
+		<!--可以很方便切换，需要获取的user-->
+	</bean>
+	<bean id="teacher" class="com.gqzdev.ioc.parsebeandefinition.lookupmethod.Teacher"/>
+	<bean id="student" class="com.gqzdev.ioc.parsebeandefinition.lookupmethod.Student"/>
+
+
+	<!--测试replaced-method ，替换方法-->
+	<bean id="changeMethod" class="com.gqzdev.ioc.parsebeandefinition.placedmethod.ChangeMethod" >
 		<!--
 			使用replaced-method标签  name指定方法名  replacer指定替换后的bean（该bean需要实现一个 MethodReplacer）
 			动态替换 changeMe 方法-->
 		<replaced-method name="changeMe" replacer="replacer"/>
-
 	</bean>
-
-	<bean id="replacer" class="com.gqzdev.ioc.parsebeandefinition.parsereplacedmethod.ChangeMethodReplacer"/>
+	<bean id="replacer" class="com.gqzdev.ioc.parsebeandefinition.placedmethod.ChangeMethodReplacer"/>
 
 </beans>
