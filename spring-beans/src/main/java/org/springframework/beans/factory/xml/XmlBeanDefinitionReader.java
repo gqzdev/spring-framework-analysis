@@ -512,12 +512,14 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 * @see BeanDefinitionDocumentReader#registerBeanDefinitions
 	 */
 	public int registerBeanDefinitions(Document doc, Resource resource) throws BeanDefinitionStoreException {
-		// 创建BeanDefinitionDocumentReader bean定义信息读取器
+		// 使用DefaultBeanDefinitionDocumentReader实例化 BeanDefinitionDocumentReader ; BeanDefinition读取器
 		BeanDefinitionDocumentReader documentReader = createBeanDefinitionDocumentReader();
+		// 记录统计前BeanDefinition的加载个数
 		int countBefore = getRegistry().getBeanDefinitionCount();
 		// 注册BeanDefinition的方法 doRegisterBeanDefinitions
 		documentReader.registerBeanDefinitions(doc, createReaderContext(resource));
-		return getRegistry().getBeanDefinitionCount() - countBefore; // 返回注册 BeanDefinition的个数
+		// 返回本次注册 BeanDefinition的个数
+		return getRegistry().getBeanDefinitionCount() - countBefore;
 	}
 
 	/**

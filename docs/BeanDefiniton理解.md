@@ -122,7 +122,48 @@ BeanDefinition 中的方法虽然多，但是结合我们平时在 XML 中的配
 
 ## 2.BeanDefinition 实现类
 
+BeanDefinition接口的相关继承结构：
+
+```java
+AttributeAccessorSupport (org.springframework.core)
+    BeanMetadataAttributeAccessor (org.springframework.beans)
+        AbstractBeanDefinition (org.springframework.beans.factory.support)
+            RootBeanDefinition (org.springframework.beans.factory.support)
+                ConfigurationClassBeanDefinition in ConfigurationClassBeanDefinitionReader (org.springframework.context.annotation)
+                ClassDerivedBeanDefinition in GenericApplicationContext (org.springframework.context.support)
+                Anonymous in rootBeanDefinition() in DefinitionMetadataEqualsHashCodeTests (org.springframework.beans.factory.support)
+            ChildBeanDefinition (org.springframework.beans.factory.support)
+                Anonymous in childBeanDefinition() in DefinitionMetadataEqualsHashCodeTests (org.springframework.beans.factory.support)
+            GenericBeanDefinition (org.springframework.beans.factory.support)
+                ScannedGenericBeanDefinition (org.springframework.context.annotation)
+                AnnotatedGenericBeanDefinition (org.springframework.beans.factory.annotation)
+```
+
+RootBeanDefinition，ChildBeanDefinition，GenericBeanDefinition均继承了AbstractBeanDefiniton,其中BeanDefinition是配置文件<bean>元素标签在容器中内部表示形式。<bean>元素标签拥有class、scope、lazy-init等配置属性，BeanDefinition则提供了相应的beanClass、scope、lazyInit属性，BeanDefinition和<bean>中的属性是一一对应的。
+
+​		其中**RootBeanDefinition**是最常用的实现类，它对应一般性的<bean>元素标签，
+
+**GenericBeanDefinition**是自2.5以后新加入的bean文件配置属性定义类，是一站式服务类。在配置文件中可以定义父<bean>和子<bean>，父<bean>用RootBeanDefinition表示，
+
+而子<bean>用**ChildBeanDefiniton**表示，而没有父<bean>的<bean>就使用RootBeanDefinition表示。AbstractBeanDefinition对两者共同的类信息进行抽象。
+
+​		Spring通过BeanDefinition将配置文件中的<bean>配置信息转换为容器的内部表示，并将这些BeanDefiniton注册到BeanDefinitonRegistry中。
+
+​		Spring容器的BeanDefinitionRegistry就像是Spring配置信息的内存数据库，主要是以map的形式保存，后续操作直接从BeanDefinitionRegistry中读取配置信息。一般情况下，BeanDefinition只在容器启动时加载并解析，除非容器刷新或重启，这些信息不会发生变化，当然如果用户有特殊的需求，也可以通过编程的方式在运行期调整BeanDefinition的定义。
+
+
+
 上面只是 BeanDefinition 接口的定义，BeanDefinition 还拥有诸多实现类，我们也来大致了解下。
+
+BeanDefinition常见实现类
+
+
+
+- ChildBeanDefinition
+- RootBeanDefinition
+- GenericBeanDefinition
+- AnnotatedGenericBeanDefinition
+- ScannedGenericBeanDefinition
 
 先来看一张继承关系图：
 
