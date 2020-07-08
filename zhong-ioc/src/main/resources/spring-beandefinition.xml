@@ -10,8 +10,9 @@
 	<bean id="loudSpeaker" class="com.gqzdev.ioc.parsebeandefinition.lookupmethod.LoudSpeaker">
 		<lookup-method name="getUser" bean="student"/>
 		<!--可以很方便切换，需要获取的user-->
+
 	</bean>
-	<bean id="teacher" class="com.gqzdev.ioc.parsebeandefinition.lookupmethod.Teacher"/>
+	<bean id="teacher"  class="com.gqzdev.ioc.parsebeandefinition.lookupmethod.Teacher"/>
 	<bean id="student" class="com.gqzdev.ioc.parsebeandefinition.lookupmethod.Student"/>
 
 
@@ -24,4 +25,12 @@
 	</bean>
 	<bean id="replacer" class="com.gqzdev.ioc.parsebeandefinition.placedmethod.ChangeMethodReplacer"/>
 
+	<!--constructor-arg  构造器注入  通过index指定参数顺序-->
+	<bean id="user01" class="com.gqzdev.ioc.bean.User">
+		<constructor-arg index="0" value="2020102" />
+		<constructor-arg index="1" value="阿中"/>
+		<constructor-arg index="2" value="***"/>
+		<constructor-arg index="3" value="15571398101"/>
+		<constructor-arg index="4" value="中国"/>
+	</bean>
 </beans>

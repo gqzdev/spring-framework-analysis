@@ -166,11 +166,11 @@ public abstract class BeanDefinitionReaderUtils {
 		// Register bean definition under primary name.
 		//拿到对应的beanName 就是我们前面定义的id的名字  <bean id="user" 。。。> beanName就是这里的user
 		String beanName = definitionHolder.getBeanName();
-		// 注册BeanDefinition
+		// 通过beanName ，注册BeanDefinition
 		registry.registerBeanDefinition(beanName, definitionHolder.getBeanDefinition());
 
 		// Register aliases for bean name, if any.
-		// 注册bean名称的别名(如果有的话)。
+		// 如果有别名，则通过别名注册
 		String[] aliases = definitionHolder.getAliases();
 		if (aliases != null) {
 			for (String alias : aliases) {

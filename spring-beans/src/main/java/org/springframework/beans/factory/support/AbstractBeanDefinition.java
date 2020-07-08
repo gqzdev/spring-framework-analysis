@@ -51,7 +51,7 @@ import java.util.function.Supplier;
  * @see ChildBeanDefinition
  */
 /*
-	AbstractBeanDefinition的常见实现类
+	AbstractBeanDefinition的常见实现类 ,大部分的通用属性都保存在了AbstractBeanDefinition
 	RootBeanDefinition
 	ChildBeanDefinition
 	GenericBeanDefinition
@@ -144,65 +144,140 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	@Nullable
 	private volatile Object beanClass;
 
+	/**
+	 *	bean的作用范围，对应bean的scope属性
+	 */
 	@Nullable
 	private String scope = SCOPE_DEFAULT;
 
+	/**
+	 *	是否是抽象，来自bean的abstract属性
+	 */
 	private boolean abstractFlag = false;
 
+	/**
+	 *  是否延迟加载，来自bean的lazy-init属性
+	 */
 	private boolean lazyInit = false;
 
+	/**
+	 *  自动注入模式，对应bean的autowire属性
+	 */
 	private int autowireMode = AUTOWIRE_NO;
 
+	/**
+	 * 依赖检查
+	 */
 	private int dependencyCheck = DEPENDENCY_CHECK_NONE;
 
+	/**
+	 * 用来表示一个bean的实例化依靠另一个bean先实例化，对应bean的depends属性
+	 */
 	@Nullable
 	private String[] dependsOn;
 
+	/**
+	 *  是否作为bean自动注入的选项
+	 */
 	private boolean autowireCandidate = true;
 
+	/**
+	 * 自动装配时，出现多个候选者是，作为首选， 对应bean的primary属性
+	 */
 	private boolean primary = false;
 
+	/**
+	 *	用于记录Qualifier，对应bean的子元素 qualifier
+	 */
 	private final Map<String, AutowireCandidateQualifier> qualifiers = new LinkedHashMap<>();
 
 	@Nullable
 	private Supplier<?> instanceSupplier;
 
+	/**
+	 *  允许访问非公开的构造器和方法，程序设置
+	 */
 	private boolean nonPublicAccessAllowed = true;
 
+	/**
+	 *	是否以一种宽松的模式 解析构造函数，默认为true
+	 */
 	private boolean lenientConstructorResolution = true;
 
+	/**
+	 *	工厂方法中使用的bean名称，对应bean的factory-bean属性
+	 */
 	@Nullable
 	private String factoryBeanName;
 
+	/**
+	 *	调用的工厂方法，对应bean的factory-method属性
+	 */
 	@Nullable
 	private String factoryMethodName;
 
+	/**
+	 *	记录构造函数注入属性
+	 */
 	@Nullable
 	private ConstructorArgumentValues constructorArgumentValues;
 
+	/**
+	 *	普通属性集合
+	 */
 	@Nullable
 	private MutablePropertyValues propertyValues;
 
+	/**
+	 *	方法重写的持有者，记录lookup-method、replaced-method元素
+	 */
 	@Nullable
 	private MethodOverrides methodOverrides;
 
+	/**
+	 *	初始化方法，对应bean的init-method属性
+	 */
 	@Nullable
 	private String initMethodName;
 
+	/**
+	 *	销毁方法，对应bean的destroy-method属性
+	 */
 	@Nullable
 	private String destroyMethodName;
 
+	/**
+	 *	是否执行init-method方法，默认为true
+	 */
 	private boolean enforceInitMethod = true;
 
+	/**
+	 *	是否执行destroy-method，默认为true
+	 */
 	private boolean enforceDestroyMethod = true;
 
+	/** synthetic 综合。。。
+	 *	是否是用户定义的，而不是应用程序本身定义的，创建AOP时为true
+	 */
 	private boolean synthetic = false;
 
+	/**
+	 *	定义这个bean的应用，
+	 *	ROLE_APPLICATION = 0表示这个 Bean 是用户自己定义的 Bean；
+	 * 	ROLE_SUPPORT = 1 表示这个 Bean 是某些复杂配置的支撑部分；
+	 * 	ROLE_INFRASTRUCTURE = 2 表示这是一个 Spring 内部的 Bean，
+	 */
 	private int role = BeanDefinition.ROLE_APPLICATION;
 
+	/**
+	 *	bean的描述信息，对应bean元素的子元素description
+	 */
 	@Nullable
 	private String description;
 
+	/**
+	 *	这个bean定义的资源
+	 */
 	@Nullable
 	private Resource resource;
 

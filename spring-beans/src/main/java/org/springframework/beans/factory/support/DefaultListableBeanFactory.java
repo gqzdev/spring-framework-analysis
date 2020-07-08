@@ -862,6 +862,11 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		if (beanDefinition instanceof AbstractBeanDefinition) {
 			try {
 				// 验证这个bean定义
+				/*
+					注册前的最后一次校验，这里的检验不同于之前的XML文件校验
+					主要是对于AbstractBeanDefinition属性中的methodOverrides校验
+					校验methodOverrides是否与工厂方法并存  或者 methodOverrides对应的方法根本不存在
+				 */
 				((AbstractBeanDefinition) beanDefinition).validate();
 			}
 			catch (BeanDefinitionValidationException ex) {
@@ -910,6 +915,9 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			if (hasBeanCreationStarted()) {
 				// Cannot modify startup-time collection elements anymore (for stable iteration)
 				// 注册的过程需要保存数据的一致性，使用synchronized 同步
+				/*
+					因为beanDefinitionMap是全局变量，这里定会存在并发访问的情况
+				 */
 				synchronized (this.beanDefinitionMap) {
 					//将一个一个的beanDefinition放入到一个Map中（即为IoC容器）
 					this.beanDefinitionMap.put(beanName, beanDefinition);
@@ -932,7 +940,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
 		// 如果已经存在 或者 包含beanName
 		if (existingDefinition != null || containsSingleton(beanName)) {
-			// 重置BeanDefinition
+			// 重置所有beanName对应的缓存
 			resetBeanDefinition(beanName);
 		}
 	}
