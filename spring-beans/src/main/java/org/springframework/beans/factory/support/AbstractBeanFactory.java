@@ -208,9 +208,16 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		final String beanName = transformedBeanName(name);
 		Object bean;
 
-		// Eagerly check singleton cache for manually registered singletons.
-		// 三级缓存  三个map，
-		// 先从缓存中取是否已经有被创建过的单态类型的Bean
+		// Eagerly check singleton cache for manually registered singletons. 急切地检查单例缓存中手动注册的单例。
+		/*
+			检查缓存中 或者 实例工厂中是否有对应的实例
+			为什么首先会使用这段代码呢？
+			因为在创建单例bean的时候会存在 依赖注入 的情况，而在创建依赖的时候为了避免循环依赖，
+			Spring创建bean的原则 是不等bean创建完成就 将创建bean的 ObjectFactory提早曝光
+			也就是将ObjectFactory加入到缓存中，（引入三级缓存  三个map，）
+			一旦下个bean创建时候需要依赖上个bean，则直接使用ObjectFactory
+		*/
+		// 先直接尝试 从缓存或者 singletonFactories中的ObjectFactory中获取
 		// 对于单例模式的Bean整个IOC容器中只创建一次，不需要重复创建
 		Object sharedInstance = getSingleton(beanName);
 		//IOC容器创建单例模式Bean实例对象
