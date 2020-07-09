@@ -1,4 +1,4 @@
-package com.gqzdev.ioc.postprocessor;
+package com.gqzdev.ioc.beanfactorypostprocessor;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.MutablePropertyValues;
@@ -10,6 +10,7 @@ import java.util.Iterator;
 
 /**
  * BeanFactoryPostProcessor接口  介绍
+ *
  * BeanFactoryPostProcessor是在spring容器加载了bean的定义文件之后，在bean实例化之前执行的。
  * 接口方法的入参是ConfigurrableListableBeanFactory，使用该参数，可以获取到相关bean的定义信息
  *

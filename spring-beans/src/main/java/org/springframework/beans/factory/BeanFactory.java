@@ -125,9 +125,12 @@ public interface BeanFactory {
 	 * will return the factory, not the instance returned by the factory.
 	 */
 	/*
+		dereference，
 		用于解除对FactoryBean实例的引用，并将其与FactoryBean创建的bean区分开来。
 		例如，如果名为myJndiObject的bean是一个FactoryBean，
 		那么get&myJndiObject将返回工厂，而不是工厂返回的实例。
+
+		转义符"&"用来获取FactoryBean本身
 	 */
 	String FACTORY_BEAN_PREFIX = "&";
 

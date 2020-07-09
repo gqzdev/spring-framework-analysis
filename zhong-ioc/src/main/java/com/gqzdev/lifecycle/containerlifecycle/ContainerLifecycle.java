@@ -1,12 +1,15 @@
 package com.gqzdev.lifecycle.containerlifecycle;
 
-import org.springframework.beans.PropertyValues;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter;
-
-import java.beans.PropertyDescriptor;
 
  /**
   * @description: 容器级生命周期
+  *
+  * 	容器级生命周期接口方法的执行时序
+  * 	继承 InstantiationAwareBeanPostProcessorAdapter 类
+  *
+  *
+  *
   * @Author: ganquanzhong
   * @Date:  2019/12/30 9:34
   */

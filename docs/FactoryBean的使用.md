@@ -4,11 +4,9 @@ bean的获取过程
 
 ## BeanFactory和FactoryBean的区别
 
- https://www.cnblogs.com/xingzc/p/9138256.html 
-
 共同点：
 
-​     都是接口
+​     	都是接口
 
 区别：
 
@@ -16,7 +14,7 @@ bean的获取过程
 
 ​       在Spring中，所有的Bean都是由BeanFactory(也就是IOC容器)来进行管理的。
 
-   但对FactoryBean而言，这个Bean不是简单的Bean，而是一个能生产或者修饰对象生成的工厂Bean,
+   FactoryBean，这个Bean不是简单的Bean，而是一个能生产或者修饰对象生成的工厂Bean,
 
 ​       它的实现与设计模式中的工厂模式和修饰器模式类似。
 

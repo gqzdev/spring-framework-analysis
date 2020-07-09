@@ -5,7 +5,8 @@
 
     <!--BeanLifecycle-->
     <bean id="beanLifecycle" class="com.gqzdev.lifecycle.beanlifcycle.BeanLifecycle"
-		  init-method="lifecycleInit" destroy-method="lifecycleInitDestroy">
+		  init-method="lifecycleInit"
+		  destroy-method="lifecycleInitDestroy">
     </bean>
 
 </beans>

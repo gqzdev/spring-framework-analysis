@@ -6,6 +6,11 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 
  /**
   * @description: 工厂级生命周期
+  * 	工厂级级生命周期接口方法的执行时序
+  * 实现BeanFactoryPostProcessor接口 的postProcessBeanFactory方法，
+  * 传入参数类型为 ConfigurableListableBeanFactory
+  *
+  *
   * @Author: ganquanzhong
   * @Date:  2019/12/30 9:34
   */

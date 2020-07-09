@@ -183,7 +183,7 @@ resources 目录下创建配置文件：
 	</bean>
 	
 
-	<bean id="myBeanFactoryPostProcessor" class="com.gqzdev.ioc.postprocessor.MyBeanFactoryPostProcessor"/>
+	<bean id="myBeanFactoryPostProcessor" class="com.gqzdev.ioc.beanfactorypostprocessor.MyBeanFactoryPostProcessor"/>
 </beans>
 ```
 

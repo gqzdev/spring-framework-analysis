@@ -12,10 +12,26 @@ import org.springframework.context.ApplicationContextAware;
   * @author ganquanzhong
   * @date   2019/12/30 9:24
   *
-  *	接口BeanNameAware ApplicationContextAware	InitializingBean DisposableBean
+  *	实现接口
+  *	BeanNameAware
+  *
+  *	ApplicationContextAware
+  *
+  *	InitializingBean
+  *
+  *	DisposableBean
   *
   */
-
+ /*
+ 	1. 【Bean级别】构造器执行了
+	2. 【Bean级别】setBeanName方法执行了
+	3. 【Bean级别】setApplicationContext方法执行了
+	4. 【Bean级别】afterPropertiesSet方法执行了
+	5. 【Bean级别】init-method指定的方法执行了
+	6. 【Bean级别】sayHello方法执行了
+	7. 【Bean级别】destroy方法执行了
+	8. 【Bean级别】destroy-method属性指定的方法执行了
+  */
 public class BeanLifecycle implements BeanNameAware, ApplicationContextAware, InitializingBean, DisposableBean {
     /**
      * 1. 构造器
