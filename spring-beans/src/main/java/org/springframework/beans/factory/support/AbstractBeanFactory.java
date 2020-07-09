@@ -246,7 +246,10 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			 		并不是直接返回实例本身，而是返回指定方法返回的实例
 			 */
 			//获取给定Bean的实例对象，主要是完成FactoryBean的相关处理
-			//注意：BeanFactory是管理容器中Bean的工厂，而FactoryBean是创建创建对象的工厂Bean，两者之间有区别
+			/*
+				注意：BeanFactory是管理容器中Bean的工厂，
+				而FactoryBean是创建创建对象的工厂Bean，两者之间有区别
+			 */
 			bean = getObjectForBeanInstance(sharedInstance, name, beanName, null);
 		}
 		else {
@@ -1708,11 +1711,13 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 		// Don't let calling code try to dereference the factory if the bean isn't a factory.
 
-		//容器已经得到了Bean实例对象，这个实例对象可能是一个普通的Bean，
-		//也可能是一个工厂Bean，如果是一个工厂Bean，则使用它创建一个Bean实例对象，
-		//如果调用本身就想获得一个容器的引用，则指定返回这个工厂Bean实例对象
-		//如果指定的名称是容器的解引用(dereference，即是对象本身而非内存地址)，
-		//且Bean实例也不是创建Bean实例对象的工厂Bean
+		/*
+			容器已经得到了Bean实例对象，这个实例对象可能是一个普通的Bean，
+			也可能是一个工厂Bean，如果是一个工厂Bean，则使用它创建一个Bean实例对象，
+			如果调用本身就想获得一个容器的引用，则指定返回这个工厂Bean实例对象
+			如果指定的名称是容器的解引用(dereference，即是对象本身而非内存地址)，
+			且Bean实例也不是创建Bean实例对象的工厂Bean
+		 */
 		if (BeanFactoryUtils.isFactoryDereference(name)) {
 			if (beanInstance instanceof NullBean) {
 				return beanInstance;

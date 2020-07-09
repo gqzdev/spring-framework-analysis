@@ -58,10 +58,23 @@ import org.springframework.lang.Nullable;
  */
 
 /*
+ 	当调用getBean("user")时，Spring通过反射机制发现UserFactoryBean实现了FactoryBean的接口，
+ 	这时Spring容器就调用接口方法CarFactoryBean#getObject()方法返回。
+	如果希望获取CarFactoryBean的实例，则需要在使用getBean(beanName)方法时在beanName前显示的加上"&"前缀：
+	如getBean("&car");
+
+	Object bean1 = app.getBean("&user");//UserFactoryBean
+	Object bean2 = app.getBean("user");//User
+
+
  * FactoryBean  有三个方法
  * 		getObject()
+ * 			返回由FactoryBean创建的Bean实例，如果isSingleton()返回true，
+ * 			则该实例会放到Spring容器中单实例缓存池中；
  * 		getObjectType()
+ * 			返回FactoryBean创建的Bean类型。
  * 		isSingleton()
+ * 			返回由FactoryBean创建的Bean实例的作用域是singleton还是prototype；
  *
  * 	FeignClient中有实现
  */
