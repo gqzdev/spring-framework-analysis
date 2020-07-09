@@ -22,7 +22,10 @@ import org.springframework.core.io.ClassPathResource;
 public class XmlBeanFactoryTest {
 
 	public static void main(String[] args) {
-
+		/**
+		 *	使用BeanFactory进行分析 ，虽然已过期
+		 *	现在都是使用ApplicationContext
+		 */
 		ClassPathResource resource = new ClassPathResource("spring-bean01.xml");
 		XmlBeanFactory beanFactory = new XmlBeanFactory(resource);
 		for (String beanDefinitionName : beanFactory.getBeanDefinitionNames()) {

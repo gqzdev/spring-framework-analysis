@@ -34,4 +34,5 @@ include 'spring-gqzdev'
 include 'zhong-ioc'
 include 'zhong-web'
 include 'zhong-analysis'
+include 'zhong-aop'
 
