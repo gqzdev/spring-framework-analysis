@@ -56,12 +56,22 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
 		return currentlyInvokedFactoryMethod.get();
 	}
 
-	//核心方法instantiateClass   BeanUtils.instantiateClass(constructorToUse);
+	/*
+		实例化 策略
+		核心方法instantiateClass   BeanUtils.instantiateClass(constructorToUse);
+	 */
 	@Override
 	public Object instantiate(RootBeanDefinition bd, @Nullable String beanName, BeanFactory owner) {
 		// Don't override the class with CGLIB if no overrides.
+		/*
+			如果有需要覆盖 或者动态替换的方法
+			则当然需要使用cglib进行动态代理，因为可以在创建代理的同时将动态方法织入类中
+			但是如果没有需要动态改变得方法，为了方便直接反射就可以了
+		 */
+		// bd.getMethodOverrides()为空也就是用户没有使用replace 或者lookup 的配置方法，那么直接使用反射的方式
 		if (!bd.hasMethodOverrides()) {
-			Constructor<?> constructorToUse;  //构造器
+			// 构造器
+			Constructor<?> constructorToUse;
 			synchronized (bd.constructorArgumentLock) {
 				constructorToUse = (Constructor<?>) bd.resolvedConstructorOrFactoryMethod;
 				if (constructorToUse == null) {
@@ -88,7 +98,11 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
 			return BeanUtils.instantiateClass(constructorToUse);
 		}
 		else {
+			/*
+				使用动态代理的方式将包含两个特性所对应的逻辑的拦截增强器设置进去，
+			 */
 			// Must generate CGLIB subclass.
+			// 必须生成CGLIB子类。
 			return instantiateWithMethodInjection(bd, beanName, owner);
 		}
 	}
