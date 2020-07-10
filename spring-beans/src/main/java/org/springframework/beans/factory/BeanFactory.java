@@ -114,7 +114,23 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.beans.factory.support.RootBeanDefinition#getDestroyMethodName
  */
 /*
- *	BeanFactory的顶级接口
+ 	BeanFactory的顶级接口
+
+	Bean工厂实现应该尽可能地支持标准Bean生命周期接口。全套初始化方法及其标准顺序为:
+	1. BeanNameAware's setBeanName
+	2. BeanClassLoaderAware's setBeanClassLoader
+	3. BeanFactoryAware's setBeanFactory
+	4. EnvironmentAware's setEnvironment
+	5. EmbeddedValueResolverAware's setEmbeddedValueResolver
+	6. ResourceLoaderAware's setResourceLoader (only applicable when running in an application context)
+	7. ApplicationEventPublisherAware's setApplicationEventPublisher (only applicable when running in an application context)
+	8. MessageSourceAware's setMessageSource (only applicable when running in an application context)
+	9. ApplicationContextAware's setApplicationContext (only applicable when running in an application context)
+	10.ServletContextAware's setServletContext (only applicable when running in a web application context)
+	11.postProcessBeforeInitialization methods of BeanPostProcessors
+	12.InitializingBean's afterPropertiesSet
+	13.a custom init-method definition
+	14.postProcessAfterInitialization methods of BeanPostProcessors
  */
 public interface BeanFactory {
 
