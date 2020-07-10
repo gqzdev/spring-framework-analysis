@@ -1,8 +1,7 @@
-package com.gqzdev.ioc;
+package com.gqzdev.ioc.annotation;
 
 
 import com.gqzdev.ioc.bean.User;
-import com.gqzdev.ioc.annotation.JavaConfig;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

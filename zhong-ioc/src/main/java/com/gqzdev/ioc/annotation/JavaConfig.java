@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
  * @Version
  **/
 @Configuration
-@ComponentScan("com.gqzdev.ioc")
+@ComponentScan("com.gqzdev.ioc.annotation")
 public class JavaConfig {
 
 	@Bean(initMethod = "initMethod")
