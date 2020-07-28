@@ -541,7 +541,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
 			// Prepare the bean factory for use in this context.
-			// 准备在这种情况下使用的bean工厂  向beanFactory中设置一些属性
+			// 准备在这种情况下使用的bean工厂  向beanFactory中设置一些属性  。对BeanFactory 进行各种功能填充
 			prepareBeanFactory(beanFactory);
 
 			try {
@@ -551,7 +551,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 				// Invoke factory processors registered as beans in the context.
 				//【BeanFactoryPostProcessors】调用工厂后置处理器  注册bean   这个过程使用到代理
-				//BeanFactoryPostProcessor 可以 用于容器完成初始化 （）
+				//BeanFactoryPostProcessor 可以 用于容器完成初始化()
 				// 还没有实例化Bean之前读取Bean的信息，并作出一些修改。
 				// 例如修改Bean的属性，修改Bean的scope等
 				invokeBeanFactoryPostProcessors(beanFactory);
@@ -564,19 +564,21 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				registerBeanPostProcessors(beanFactory);
 
 				// Initialize message source for this context.
-				// 完成国际化 i18n
+				// 为上下文初始化Message 源， 即不同语言的消息体， 国际化处理 i18n
 				initMessageSource();
 
 				// Initialize event multicaster for this context.
 				// 初始化事件传播器
+				//初始化应用消息广播器， 并放入"applicationEventMulticaster" bean 中
 				initApplicationEventMulticaster();
 
 				// Initialize other special beans in specific context subclasses.
-				// 扩展的一个实现  springboot内嵌的tomcat在这个阶段完成
+				// 扩展的一个实现 ，留给子类来初始化其它的Bean。如springboot内嵌的tomcat在这个阶段完成
 				onRefresh();
 
 				// Check for listener beans and register them.
 				// 注册监听器
+				// 在所有注册的bean 中查找Listener bean ， 注册到消息广播报中
 				registerListeners();
 
 				/* 第11步
@@ -589,7 +591,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				// Instantiate all remaining (non-lazy-init) singletons.
 				finishBeanFactoryInitialization(beanFactory);
 
-				// Last step: publish corresponding event.  最后一步：发布相应的事件。
+				// Last step: publish corresponding event.
+				// 最后一步：发布相应的事件。
+				//完成刷新过程， 通知生命周期处现器lifecycleProcessor 刷新过程， 同时发出ContextRefreshEvent 通知别人
 				finishRefresh();
 			}
 
@@ -624,6 +628,12 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * <p>Prepare this context for refreshing, setting its startup date and
 	 * active flag as well as performing any initialization of property sources.
 	 */
+	/*
+		1. 初始化前的准备工作，例如对系统属性或者环境变量进行准备及验证。
+	在某种情况下项目的使用需要读取某些系统变量， 而这个变量的设置很可能会影响着系统
+	的正确性，那么ClassPathXmlApplicationContext 为我们提供的这个准备函数prepareRefresh 就显得非常必要，
+	它可以在Spring 启动的时候提前对必需的变量进行存在性验证。
+	 */
 	protected void prepareRefresh() {
 		// Switch to active.
 		this.startupDate = System.currentTimeMillis();
@@ -640,12 +650,12 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		}
 
 		// Initialize any placeholder property sources in the context environment.
-		// 初始化一些属性设置;子类自定义个性化的属性设置方法；
+		// 初始化一些属性设置; 子类自定义个性化的属性设置方法；[留给子类覆盖]
 		initPropertySources();
 
 		// Validate that all properties marked as required are resolvable:
 		// see ConfigurablePropertyResolver#setRequiredProperties
-		// 检验属性的合法等
+		// 检验属性的合法等。 验证需要的属性文件是否都已经放入到环境中
 		getEnvironment().validateRequiredProperties();
 
 		// Store pre-refresh ApplicationListeners...
@@ -669,6 +679,10 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * @see org.springframework.core.env.PropertySource.StubPropertySource
 	 * @see org.springframework.web.context.support.WebApplicationContextUtils#initServletPropertySources
 	 */
+	/*
+		initPropertySources正符合Spring 的开放式结构设计，给用户最大扩展Spring 的能力。
+		用户可以根据自身的需要重写initPropertySources 方法，并在方法中进行个性化的属性处理及设置。
+	 */
 	protected void initPropertySources() {
 		// For subclasses: do nothing by default.
 	}
@@ -678,6 +692,13 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * @return the fresh BeanFactory instance
 	 * @see #refreshBeanFactory()
 	 * @see #getBeanFactory()
+	 */
+	/*
+		2. 初始化BeanFactory, 并进行XML 文件读取。
+	之前有提到ClassPathXm!ApplicationContext 包含着BeanFactory 所提供的一切特征，那么
+	在这一步骤中将会复用BeanFactory 中的配置文件读取解析及其他功能，这一步之后，
+	ClassPathXmlApplicationContext 实际上就已经包含了B eanFactory 所提供的功能，也就是可以
+	进行bean 的提取等基础操作了。
 	 */
 	protected ConfigurableListableBeanFactory obtainFreshBeanFactory() {
 		// refreshBeanFactory 核心方法
@@ -692,6 +713,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * <p>Configure the factory's standard context characteristics,
 	 * such as the context's ClassLoader and post-processors.
 	 * @param beanFactory the BeanFactory to configure
+	 */
+	/*
+			3. 对BeanFactory 进行各种功能填充。
+		@Qualifier 与@Autowired 应该是大家非常熟悉的注解，那么这两个注解正是在这一步骤中
+		增加的支持。
 	 */
 	protected void prepareBeanFactory(ConfigurableListableBeanFactory beanFactory) {
 		// Tell the internal bean factory to use the context's class loader etc.
@@ -748,6 +774,12 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * BeanPostProcessors etc in certain ApplicationContext implementations.
 	 * @param beanFactory the bean factory used by the application context
 	 */
+	/*
+			4. Spring 之所以强大，为世人所推崇，除了它功能上为大家提供了便例外，还有一方面是它
+		的完美架构，开放式的架构让使用它的程序员很容易根据业务需要扩展已经存在的功能。这种
+		开放式的设计在Spring 中随处可见，
+		例如在本例中就提供了一个空的函数实现postProcessBeanFactory来方便程序员在业务上做进一步扩展。
+	 */
 	protected void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) {
 	}
 
@@ -760,7 +792,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * respecting explicit order if given.
 	 * <p>Must be called before singleton instantiation.
 	 */
-	/*	BeanFactoryPostProcessor在refresh()中的invokeBeanFactoryPostProcessors中执行，
+	/*	5. 激活各种BeanFactory 处理器。
+		BeanFactoryPostProcessor在refresh()中的invokeBeanFactoryPostProcessors中执行，
 		1、先遍历执行已经在容器中注册的BeanFactoryPostProcessor
 		2、再找BeanDefinition中的BeanFactoryPostProcessor，通过getBean方法实例化，并且执行。
 	 */
@@ -780,6 +813,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * respecting explicit order if given.
 	 * <p>Must be called before any instantiation of application beans.
 	 */
+	/*
+	6. 注册拦截bean 创建的bean 处理器，这里只是注册， 真正的调用是在getBean 时候。
+	 */
 	protected void registerBeanPostProcessors(ConfigurableListableBeanFactory beanFactory) {
 		PostProcessorRegistrationDelegate.registerBeanPostProcessors(beanFactory, this);
 	}
@@ -787,6 +823,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	/**
 	 * Initialize the MessageSource.
 	 * Use parent's if none defined in this context.
+	 */
+	/*
+		7 . 为上下文初始化Message 源，即对不同语言的消息体进行国际化处理。
 	 */
 	protected void initMessageSource() {
 		ConfigurableListableBeanFactory beanFactory = getBeanFactory();
@@ -821,6 +860,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * Initialize the ApplicationEventMulticaster.
 	 * Uses SimpleApplicationEventMulticaster if none defined in the context.
 	 * @see org.springframework.context.event.SimpleApplicationEventMulticaster
+	 */
+	/*
+		8. 初始化应用消息广播器，并放入"applicationEventMulticaster" bean 中。
 	 */
 	protected void initApplicationEventMulticaster() {
 		ConfigurableListableBeanFactory beanFactory = getBeanFactory();
@@ -874,6 +916,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * @throws BeansException in case of errors
 	 * @see #refresh()
 	 */
+	/*
+		9. 留给子类来初始化其他的bean 。
+	 */
 	protected void onRefresh() throws BeansException {
 		// For subclasses: do nothing by default.
 	}
@@ -881,6 +926,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	/**
 	 * Add beans that implement ApplicationListener as listeners.
 	 * Doesn't affect other listeners, which can be added without being beans.
+	 */
+	/*
+		10. 在所有注册的bean中查找listener bean, 注册到消息广播器中。
 	 */
 	protected void registerListeners() {
 		// Register statically specified listeners first.
@@ -908,6 +956,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	/**
 	 * Finish the initialization of this context's bean factory,
 	 * initializing all remaining singleton beans.
+	 */
+	/*
+		11. 初始化剩下的单实例（非惰性的）。
 	 */
 	protected void finishBeanFactoryInitialization(ConfigurableListableBeanFactory beanFactory) {
 		// Initialize conversion service for this context.
@@ -945,6 +996,10 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * Finish the refresh of this context, invoking the LifecycleProcessor's
 	 * onRefresh() method and publishing the
 	 * {@link org.springframework.context.event.ContextRefreshedEvent}.
+	 */
+	/*
+		12. 完成刷新过程，通知生命周期处理器lifecycleProcessor 刷新过程，
+		同时发出ContextRefreshEvent通知别人。
 	 */
 	protected void finishRefresh() {
 		// Clear context-level resource caches (such as ASM metadata from scanning).
