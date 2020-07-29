@@ -136,11 +136,17 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 				重点在loadBeanDefinitions(beanFactory)方法
 			 */
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
-			// 设置BeanFactory的一些基本信息  序列化id
+			// 设置BeanFactory的一些基本信息  序列化id; 如果需要的话， 让这个Bean Fact 。ry 从id 反序列4四U Bean Factory 对象
 			beanFactory.setSerializationId(getId());
-			// 自定义两个属性  allowBeanDefinitionOverriding 允许BeanDefinition覆盖  allowCircularReferences 允许循环依赖 默认都是true
+			/*
+				自定义两个属性
+				allowBeanDefinitionOverriding 允许BeanDefinition覆盖
+				allowCircularReferences 允许循环依赖 默认都是true
+			 */
 			customizeBeanFactory(beanFactory);
-			/** 核心步骤loadBeanDefinitions(beanFactory); 加载Bean的定义信息，从XML、注解形式等 解析出bean，并放入BeanDefinitionMap
+			/**
+			 初始化DocumentReader ， 并进行XML文件读取及解析
+			 	核心步骤loadBeanDefinitions(beanFactory); 加载Bean的定义信息，从XML、注解形式等 解析出bean，并放入BeanDefinitionMap
 			 	加载BeanDefinition
 			 	这个过程会有很多层，一直调用相同的方法名 loadBeanDefinitions 是重载的，参数类型不同
 				 不同的方式，选择不同的Reader
