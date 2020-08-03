@@ -16,23 +16,17 @@
 
 package org.springframework.context.support;
 
-import java.security.AccessControlContext;
-import java.security.AccessController;
-import java.security.PrivilegedAction;
-
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.Aware;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.beans.factory.config.EmbeddedValueResolver;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.ApplicationEventPublisherAware;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.EmbeddedValueResolverAware;
-import org.springframework.context.EnvironmentAware;
-import org.springframework.context.MessageSourceAware;
-import org.springframework.context.ResourceLoaderAware;
+import org.springframework.context.*;
 import org.springframework.lang.Nullable;
 import org.springframework.util.StringValueResolver;
+
+import java.security.AccessControlContext;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 
 /**
  * {@link org.springframework.beans.factory.config.BeanPostProcessor}
@@ -99,6 +93,11 @@ class ApplicationContextAwareProcessor implements BeanPostProcessor {
 		return bean;
 	}
 
+	/*
+		postProcessBeforeInitialization 方法中调用了invokeAwareInterfaces 。
+		从invokeAwareInterfaces方法中，我们或许已经或多或少了解了Spring 的用意，
+		实现这些Aware 接口的bean 在被初始化之后，可以取得一些对应的资源。
+	 */
 	private void invokeAwareInterfaces(Object bean) {
 		if (bean instanceof Aware) {
 			if (bean instanceof EnvironmentAware) {
@@ -122,6 +121,9 @@ class ApplicationContextAwareProcessor implements BeanPostProcessor {
 		}
 	}
 
+	/*
+	对于postProcessAfterInitialization 方法，在ApplicationContextAwareProcessor 中并没有做过多逻辑处理。
+	 */
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) {
 		return bean;
