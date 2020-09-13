@@ -103,6 +103,10 @@ public interface BeanPostProcessor {
 	 * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet
 	 * @see org.springframework.beans.factory.FactoryBean
 	 */
+	/*
+		Spring AOP  动态代理
+		就是在BeanPostProcessor的PostProcessorAfterInitialization之后处理的，与Spring IoC解耦
+	 */
 	@Nullable
 	default Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
 		return bean;
