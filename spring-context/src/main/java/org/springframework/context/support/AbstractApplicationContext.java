@@ -550,15 +550,17 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				postProcessBeanFactory(beanFactory);
 
 				// Invoke factory processors registered as beans in the context.
-				//【BeanFactoryPostProcessors】调用工厂后置处理器  注册bean   这个过程使用到代理
+				// 第5步 【BeanFactoryPostProcessors ;bean工厂后置处理器】调用我们的bean工厂后置处理器 (所有实现接口BeanFactoryPostProcessor接口的)
+				//		主要是
+				// 		会在此将class扫描成BeanDefinition 并注册bean 到一个BeanDefinitionMap中 这个过程使用到代理
 				//BeanFactoryPostProcessor 可以 用于容器完成初始化()
-				// 还没有实例化Bean之前读取Bean的信息，并作出一些修改。
+				// 此处可以 还没有实例化Bean之前读取Bean的信息，并作出一些修改。
 				// 例如修改Bean的属性，修改Bean的scope等
 				invokeBeanFactoryPostProcessors(beanFactory);
 
 				//https://blog.csdn.net/caihaijiang/article/details/35552859
 				// Register bean processors that intercept bean creation.
-				// 【BeanPostProcessors】 注册BeanPostProcessor
+				// 【BeanPostProcessors ;bean后置处理器】 注册BeanPostProcessor
 				// BeanPostProcessor是Bean的后置处理器，
 				// 在Bean的初始化方法[InitializingBean 以及init-method]前，后执行。
 				registerBeanPostProcessors(beanFactory);
@@ -592,7 +594,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				finishBeanFactoryInitialization(beanFactory);
 
 				// Last step: publish corresponding event.
-				// 最后一步：发布相应的事件。
+				// 第12步 最后一步：发布相应的事件。
 				//完成刷新过程， 通知生命周期处现器lifecycleProcessor 刷新过程， 同时发出ContextRefreshEvent 通知别人
 				finishRefresh();
 			}
@@ -604,7 +606,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				}
 
 				// Destroy already created singletons to avoid dangling resources.
-				// 销毁以创建的Bean
+				// 第13步 销毁以创建的Bean
 				destroyBeans();
 
 				// Reset 'active' flag.

@@ -797,6 +797,12 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			//判断bd  非抽象、单例、非懒加载
 			if (!bd.isAbstract() && bd.isSingleton() && !bd.isLazyInit()) {
 				//判断是不是FactoryBean
+				/**
+				 * 	FactoryBean介绍
+				 * 	一个普通bean 实现FactoryBean接口  会调用getObject方法返回的bean; 此时就是一个特殊的bean
+				 * 	[应用场景]
+				 * 		如果需要获取原来对象，加‘&’; 在Mybatis集成时，可以通过&beanName 获取
+				 */
 				if (isFactoryBean(beanName)) {
 					Object bean = getBean(FACTORY_BEAN_PREFIX + beanName);
 					if (bean instanceof FactoryBean) {
@@ -818,6 +824,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				}
 				else {
 					/*
+						非工厂bean
 						对于非抽象类、非延迟初始化的单例bean，
 						在spring容器启动的时候调用getBean方法来实例化bean，并进行相关初始化工作，
 						getBean方法最终调用AbstractAutowireCapableBeanFactory.doCreateBean方法

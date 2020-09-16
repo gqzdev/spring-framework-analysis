@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
  * @Version
  **/
 @Configuration
-@ComponentScan("com.gqzdev.ioc.annotation")
+@ComponentScan("com.gqzdev.ioc.annotation")  //扫描com.gqzdev.ioc.annotation包下面  添加相关注册的bean到IOC容器中
 public class JavaConfig {
 
 	@Bean(initMethod = "initMethod")
