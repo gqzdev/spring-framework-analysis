@@ -25,6 +25,10 @@ import org.springframework.context.ApplicationContext;
  * @since 04.03.2003
  * @see ContextClosedEvent
  */
+/*
+ *	完成刷新过程，通知生命周期处理器lifecycleProcessor 刷新过程，
+ *	同时发出ContextRefreshEvent通知别人
+ */
 @SuppressWarnings("serial")
 public class ContextRefreshedEvent extends ApplicationContextEvent {
 
