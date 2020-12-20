@@ -30,7 +30,7 @@ rootProject.children.each {project ->
 	project.buildFileName = "${project.name}.gradle"
 }
 
-include 'spring-gqzdev'
+include 'zhong-gqzdev'
 include 'zhong-ioc'
 include 'zhong-web'
 include 'zhong-analysis'

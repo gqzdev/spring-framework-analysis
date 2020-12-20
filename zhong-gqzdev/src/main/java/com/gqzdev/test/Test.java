@@ -6,7 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 /**
  * @ClassName Test
- * @Description
+ * @Description  重构结构
  * @Author ganquanzhong
  * @Date2019/12/5 22:58
  * @Version
