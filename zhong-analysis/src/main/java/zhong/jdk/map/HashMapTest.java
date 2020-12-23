@@ -10,12 +10,12 @@ import java.util.HashMap;
  * @date: 2020/4/7 13:44
  */
 
-public class HashMapTest extends Object{
-	public static void main(String[] args){
+public class HashMapTest extends Object {
+	public static void main(String[] args) {
 		Key key1 = new Key("nihao");
 		Key key2 = new Key("nihao");
-		HashMap map = new HashMap<String , Object>();
-		map.put(key1,"Key with id is 1");
+		HashMap<Key, Object> map = new HashMap<Key, Object>();
+		map.put(key1, "Key with id is 1");
 		HashMapTest test = new HashMapTest();
 
 		System.out.println(map.get(key1));
@@ -25,57 +25,65 @@ public class HashMapTest extends Object{
 
 }
 
-class Key{
+class Key {
 	private String name;
-	public Key(){};
 
-	public Key(String s){
-		System.out.println("===========>"+calcHashCode("nihao"));
-		name=s;
-	};
-	public String getName(){
+	public Key() {
+	}
+
+	;
+
+	public Key(String s) {
+		System.out.println("===========>" + calcHashCode("nihao"));
+		name = s;
+	}
+
+	;
+
+	public String getName() {
 		return name;
 	}
 
 
 	/**
-	 *	HashMap 是数组+链表的方式实现  jdk8后加入了红黑树【1.】
-	 *	重写hashCode方法，保证同一个对象实例的hashcode相同
-	 *  同时还要重写equals方法  保证值相同
-	 *
+	 * HashMap 是数组+链表的方式实现  jdk8后加入了红黑树【1.】
+	 * 重写hashCode方法，保证同一个对象实例的hashcode相同
+	 * 同时还要重写equals方法  保证值相同
 	 */
 
-
-	public int hashCode(){
+	@Override
+	public int hashCode() {
 		System.out.println(name.hashCode());
 		return name.hashCode();
 	}
 
-
-	public boolean equals(Object o){
+	@Override
+	public boolean equals(Object o) {
 		if (o == null || !(o instanceof Key)) {
 			return false;
-		}else{
-			return this.name.equals(  ((Key) o).getName()  );
+		} else {
+			return this.name.equals(((Key) o).getName());
 		}
 	}
 
-	 /**
-	 *  String中计算hashCode的方法
+	/**
+	 * String中计算hashCode的方法
 	 */
 
 
-	public  int calcHashCode(String name){
+	public int calcHashCode(String name) {
 		int hash = 0;
-		int h=hash;
-		char[] value=name.toCharArray();
+		int h = hash;
+		char[] value = name.toCharArray();
 		char val[] = value;
 		for (int i = 0; i < value.length; i++) {
 			h = 31 * h + val[i];
 		}
 		hash = h;
 		return h;
-	};
+	}
+
+	;
 
 
 	/*

@@ -39,7 +39,7 @@ task api(type: Javadoc) {
 		project.sourceSets.main.allJava
 	}
 
-	maxMemory = "1024m"
+	maxMemory = "2048m"
 	destinationDir = new File(buildDir, "api")
 
 	doFirst {
