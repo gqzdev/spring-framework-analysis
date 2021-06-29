@@ -13,6 +13,9 @@ import org.springframework.context.ApplicationEvent;
  **/
 public class HelloEvent extends ApplicationEvent {
 
+
+	private static final long serialVersionUID = -9109444282647763145L;
+
 	private String name;
 
 	/**

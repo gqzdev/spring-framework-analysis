@@ -4,6 +4,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 /**
  * @ClassName: Test
+ * 		SpringIOC 生命周期
+ *
  * @author: ganquanzhong
  * @date: 2020/7/10 13:36
  */

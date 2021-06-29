@@ -55,7 +55,7 @@ git clone https://github.com/gqzdev/spring-framework-analysis
 
 6. 资源
 
-   ![SpringIoc](SpringIoC加载流程图.png)
+   ![SpringIoc](docs/SpringIoC加载流程图.png)
 
 [Spring官方文档中文版](https://www.springcloud.cc/spring-reference.html)
 
@@ -67,14 +67,7 @@ git clone https://github.com/gqzdev/spring-framework-analysis
 
 ##  💰💰[感觉不错，支持一下呗！！](https://www.cnblogs.com/gqzdev/p/shang.html)
 
- **为了方便学习交流，大家一起进步！** 
- 扫码，加入微信群
-
-![加群学习](https://images.gitee.com/uploads/images/2020/0701/135247_9d63c4dd_1134592.png "微信学习群.png")
-
-
-
-
+ 
 
 ## 		中文：
 

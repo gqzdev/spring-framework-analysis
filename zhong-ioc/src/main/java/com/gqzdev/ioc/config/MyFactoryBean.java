@@ -5,9 +5,9 @@ import org.springframework.beans.factory.FactoryBean;
 import org.springframework.stereotype.Component;
 
 /**
- *  FactoryBean 一种特殊的BeanFactory 不需要走Spring中规范的bean生成流程
- *  	直接实现其中的三个方法
- *  	在getObject中创建对象，外部可以直接获取
+ * FactoryBean 一种特殊的BeanFactory 不需要走Spring中规范的bean生成流程
+ * 直接实现其中的三个方法
+ * 在getObject中创建对象，外部可以直接获取
  *
  * @ClassName MyFactoryBean
  * @Description
@@ -17,9 +17,9 @@ import org.springframework.stereotype.Component;
  **/
 
 @Component
-public class MyFactoryBean implements FactoryBean {
+public class MyFactoryBean implements FactoryBean<Student> {
 	@Override
-	public Object getObject() throws Exception {
+	public Student getObject() throws Exception {
 		Student student = new Student(2020, "gqzdev", 23, "湖北黄冈");
 		System.out.println("-----可以进行一系列的操作-----");
 		return student;

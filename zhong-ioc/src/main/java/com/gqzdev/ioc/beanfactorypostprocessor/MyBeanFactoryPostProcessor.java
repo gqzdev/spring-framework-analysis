@@ -27,11 +27,11 @@ public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
      * @throws BeansException
      */
 
-    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+    @Override
+	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
         System.out.println("调用了自定义的BeanFactoryPostProcessor " + beanFactory);
-        Iterator it = beanFactory.getBeanNamesIterator();
-
-        String[] names = beanFactory.getBeanDefinitionNames();
+        Iterator<String> it = beanFactory.getBeanNamesIterator();
+		String[] names = beanFactory.getBeanDefinitionNames();
         // 获取了所有的bean名称列表
         for(int i=0; i<names.length; i++){
             String name = names[i];

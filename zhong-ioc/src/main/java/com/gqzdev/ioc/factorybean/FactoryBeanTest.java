@@ -22,14 +22,18 @@ public class FactoryBeanTest {
 		ClassPathXmlApplicationContext act = new ClassPathXmlApplicationContext("spring-factorybean.xml");
 		// 获取的是bean对象
 		Object car = act.getBean("carFactoryBean");
+		System.out.println("=========car=========");
+		System.out.println(car.toString());
+
 		// 获取的是bean的FactoryBean对象
 		Object carFactoryBean = act.getBean("&carFactoryBean");
-		System.out.println(car.toString());
+		System.out.println("=========carFactoryBean=========");
 		System.out.println(carFactoryBean.toString());
 
 
-
 		FactoryBean fb = (FactoryBean) carFactoryBean;
+		//通过FactoryBean的getObject方法获取真实对象
+		System.out.println("=========carFactoryBean.getObject()=========");
 		System.out.println(fb.getObject().toString());
 
 	}

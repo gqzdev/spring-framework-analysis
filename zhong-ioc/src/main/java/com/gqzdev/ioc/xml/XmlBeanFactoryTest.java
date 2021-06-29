@@ -1,7 +1,7 @@
 package com.gqzdev.ioc.xml;
 
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * 使用已过时的XmlBeanFactory 读取Xml中配置的bean，
@@ -26,8 +26,14 @@ public class XmlBeanFactoryTest {
 		 *	使用BeanFactory进行分析 ，虽然已过期
 		 *	现在都是使用ApplicationContext
 		 */
-		ClassPathResource resource = new ClassPathResource("spring-bean01.xml");
-		XmlBeanFactory beanFactory = new XmlBeanFactory(resource);
+//		ClassPathResource resource = new ClassPathResource("spring-bean01.xml");
+//		XmlBeanFactory beanFactory = new XmlBeanFactory(resource);
+//		for (String beanDefinitionName : beanFactory.getBeanDefinitionNames()) {
+//			System.out.println(beanDefinitionName);
+//		}
+
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-bean01.xml");
+		ConfigurableListableBeanFactory beanFactory = context.getBeanFactory();
 		for (String beanDefinitionName : beanFactory.getBeanDefinitionNames()) {
 			System.out.println(beanDefinitionName);
 		}

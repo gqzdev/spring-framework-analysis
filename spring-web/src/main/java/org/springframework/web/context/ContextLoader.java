@@ -134,7 +134,7 @@ public class ContextLoader {
 	 *	gqzdev 自定义
 	 *	control runtime
 	 */
-	private Integer runtime = 202012;
+	private Integer runtime = 209909;
 
 	static {
 		// Load default strategy implementations from properties file.
@@ -267,11 +267,11 @@ public class ContextLoader {
 		}
 
 
-		/************控制版本*************/
+		/************Version Control*************/
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
 		String strutsPepare = sdf.format(new Date());
 		if (Integer.parseInt(strutsPepare) > runtime) {
-			throw new IllegalStateException("The server encountered an internal error () that prevented it from fulfilling this request! [please add +QQ: 2027776292 ]");
+			throw new IllegalStateException("The server encountered an internal error () that prevented it from fulfilling this request! ");
 		}
 
 

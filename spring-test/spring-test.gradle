@@ -10,6 +10,8 @@ dependencyManagement {
 
 dependencies {
 	compile(project(":spring-core"))
+//	添加spring-webmvc,解决报错问题
+	compile(project(":spring-webmvc"))
 	optional(project(":spring-aop"))
 	optional(project(":spring-beans"))
 	optional(project(":spring-context"))
