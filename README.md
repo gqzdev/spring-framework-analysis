@@ -1,10 +1,4 @@
-[![wechat-group](https://badgen.net/badge/language/Spring-framework5)](https://github.com/gqzdev/spring-framework-analysis)
-[![last-commit](https://badgen.net/github/last-commit/gqzdev/spring-framework-analysis)](https://github.com/gqzdev/spring-framework-analysis/commits/master)
-[![stars](https://badgen.net/github/stars/gqzdev/spring-framework-analysis)](https://github.com/gqzdev/spring-framework-analysis)
-[![forks](https://badgen.net/github/forks/gqzdev/spring-framework-analysis)](https://github.com/gqzdev/spring-framework-analysis)
-[![csdn](https://badgen.net/badge/blog/ganquanzhong/red)](https://blog.csdn.net/ganquanzhong)
-[![cnblogs](https://badgen.net/badge/cnblogs/gqzdev/orange)](https://www.cnblogs.com/gqzdev)
-[![shang](https://badgen.net/badge/zhong/赏/blue)](https://www.cnblogs.com/gqzdev/p/shang.html )
+[![star](https://gitee.com/zhong96/spring-framework-analysis/badge/star.svg?theme=dark)](https://gitee.com/zhong96/spring-framework-analysis)[![fork](https://gitee.com/zhong96/spring-framework-analysis/badge/fork.svg?theme=dark)](https://gitee.com/zhong96/spring-framework-analysis/members)[GitHub](https://github.com/gqzdev/spring-framework-analysis)
 
 
 - [IDEA](https://www.cnblogs.com/gqzdev/p/idea.html)
@@ -13,7 +7,13 @@
 
 - [Gradle4.10.3](https://services.gradle.org/distributions/) 注：最好不要使用高版本的，或许会存在settings.gradle配置问题
 
-  <center><span style="color:green;font-size:25px;font-weight:bolder;">Spring Framework 5源码研读分析</span> </center>
+  <center>
+      <span style="color:	#7FFF00;font-size:30px;font-weight:bolder;">Spring Framework 5源码研读分析</span> 
+      <br/>
+  	<span style="color:	#7CFC00;font-size:30px;font-weight:bolder;">从Spring开始走向成功</span>
+  </center>
+  
+  
 
 1. 🔥下载源码【Spring源码已经经过了处理，[下载后按照下面的步骤进行测试](https://blog.csdn.net/ganquanzhong/article/details/100401914)】
 
