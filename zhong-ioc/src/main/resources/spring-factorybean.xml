@@ -8,6 +8,7 @@
 
 
 	<bean id="carFactoryBean" class="com.gqzdev.ioc.factorybean.CarFactoryBean">
+		<!--setter 属性注入-->
 		<property name="carInfo" value="法拉利跑车,420,2600000"/>
 	</bean>
 

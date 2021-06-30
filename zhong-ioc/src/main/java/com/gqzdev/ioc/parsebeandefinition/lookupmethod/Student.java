@@ -8,6 +8,7 @@ package com.gqzdev.ioc.parsebeandefinition.lookupmethod;
  * @Version
  **/
 public class Student extends User {
+
 	@Override
 	public void speak() {
 		System.out.println("I am student!");

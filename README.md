@@ -11,7 +11,7 @@
 
 - [JDK8以上](https://www.oracle.com/technetwork/java/javase/overview/index.html)
 
-- [Gradle4.10.3](https://services.gradle.org/distributions/)
+- [Gradle4.10.3](https://services.gradle.org/distributions/) 注：最好不要使用高版本的，或许会存在settings.gradle配置问题
 
   <center><span style="color:green;font-size:25px;font-weight:bolder;">Spring Framework 5源码研读分析</span> </center>
 
@@ -26,6 +26,8 @@ git clone https://github.com/gqzdev/spring-framework-analysis
 ```
 
 2. 在[idea](https://www.cnblogs.com/gqzdev/p/idea.html)中导入`spring5`源码构建时，`spring-core`模块报错，缺失`cglib`相关的jar包依赖。
+
+   gradle配置,可以使用自己下载的gradle，也可以用gradle-warpper.properties中的。![在这里插入图片描述](https://img-blog.csdnimg.cn/2021063012175319.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dhbnF1YW56aG9uZw==,size_16,color_FFFFFF,t_70)
 
 > 为了避免第三方class的冲突，Spring把最新的`cglib`和`objenesis`给重新打包（repack）了，它并没有在源码里提供这部分的代码，而是直接将其放在jar包当中，这也就导致了我们拉取代码后出现编译错误。那么为了画过编译，我们要把缺失的jar补回来
 >
@@ -65,7 +67,7 @@ git clone https://github.com/gqzdev/spring-framework-analysis
 
 [快速了解](https://www.cnblogs.com/gqzdev/p/11667328.html)
 
-##  💰💰[感觉不错，支持一下呗！！](https://www.cnblogs.com/gqzdev/p/shang.html)
+##  💰💰[感觉不错，star一下呗！！](https://www.cnblogs.com/gqzdev/p/shang.html)
 
  
 

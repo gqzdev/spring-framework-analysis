@@ -5,7 +5,7 @@ package com.gqzdev.ioc.bean;
  * @author: ganquanzhong
  * @date: 2020/7/10 10:08
  */
-public class Teacher {
+public class TeacherBean {
 
 	private int tid;
 
@@ -13,10 +13,10 @@ public class Teacher {
 
 	private String course;
 
-	public Teacher() {
+	public TeacherBean() {
 	}
 
-	public Teacher(int tid, String tname, String course) {
+	public TeacherBean(int tid, String tname, String course) {
 		this.tid = tid;
 		this.tname = tname;
 		this.course = course;
@@ -48,7 +48,7 @@ public class Teacher {
 
 	@Override
 	public String toString() {
-		return "Teacher{" +
+		return "TeacherBean{" +
 				"tid=" + tid +
 				", tname='" + tname + '\'' +
 				", course='" + course + '\'' +

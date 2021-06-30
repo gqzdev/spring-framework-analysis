@@ -1,7 +1,7 @@
 package com.gqzdev.ioc.autowire;
 
 import com.gqzdev.ioc.bean.Student;
-import com.gqzdev.ioc.bean.Teacher;
+import com.gqzdev.ioc.bean.TeacherBean;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -26,9 +26,9 @@ public class JavaConfig {
 		return  new Student(20200710,"学生0710",18,"湖北黄冈");
 	}
 
-	@Bean
-	public Teacher teacher(){
-		return new Teacher(20100710,"陈老师","英语");
+	@Bean("teacherBean")
+	public TeacherBean teacherBean(){
+		return new TeacherBean(20100710,"陈老师","英语");
 	}
 
 

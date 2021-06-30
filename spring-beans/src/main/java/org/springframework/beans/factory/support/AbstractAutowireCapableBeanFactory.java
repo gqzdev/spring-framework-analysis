@@ -73,7 +73,9 @@ import java.util.function.Supplier;
  * @see DefaultListableBeanFactory
  * @see BeanDefinitionRegistry
  */
-//综合AbstractBeanFacto1y 并对接口AutowireCapableBeanFactory 进行实现。
+/**
+ * 综合AbstractBeanFacto1y 并对接口AutowireCapableBeanFactory 进行实现。
+ */
 public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory
 		implements AutowireCapableBeanFactory {
 
